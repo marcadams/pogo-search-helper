@@ -593,6 +593,89 @@ footer {
   font-size: .78rem;
 }
 
+/* ── Sticky copy bar ─────────────────────────────────────────────────────── */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: rgba(28, 20, 40, .92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-mid);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, .4);
+  animation: slideUp .2s ease-out;
+}
+
+/* On mobile, hide the bar while the result panel is still visible */
+@media (max-width: 767px) {
+  .sticky-bar.result-visible {
+    display: none;
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.sticky-string {
+  flex: 1;
+  min-width: 0;
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: .88rem;
+  color: var(--text-mid);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sticky-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-muted);
+  border-radius: 9px;
+  background: var(--surface2);
+  color: var(--text-dim);
+  padding: 9px;
+  transition: color .15s, background .15s, border-color .15s;
+}
+.sticky-icon-btn:hover {
+  color: var(--pink-bright);
+  border-color: var(--border-mid);
+  background: var(--surface3);
+}
+
+.sticky-copy-btn {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 10px;
+  background: var(--pink);
+  color: #1a0020;
+  padding: 10px 20px;
+  font-weight: 900;
+  font-size: .88rem;
+  transition: background .15s, box-shadow .15s;
+}
+.sticky-copy-btn:hover {
+  background: var(--pink-bright);
+  box-shadow: 0 0 16px var(--pink-glow);
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .hero { border-radius: 16px; }

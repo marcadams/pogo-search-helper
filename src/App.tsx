@@ -262,10 +262,25 @@ function App() {
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
+  const [stickycopied, setStickyCopied] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [saveName, setSaveName] = useState('');
+  const [resultVisible, setResultVisible] = useState(true);
   const saveInputRef = useRef<HTMLInputElement>(null);
+  const resultPanelRef = useRef<HTMLDivElement>(null);
   const { saves, save, remove } = useSavedSearches();
+
+  // Show sticky bar when the result panel scrolls out of view
+  useEffect(() => {
+    const el = resultPanelRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setResultVisible(entry.isIntersecting),
+      { threshold: 0, rootMargin: '-1px 0px 0px 0px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   const searchString = useMemo(() => {
     if (selected.length === 0) return '';
@@ -360,6 +375,13 @@ function App() {
     window.setTimeout(() => setCopied(false), 1400);
   }
 
+  async function stickyCopy() {
+    if (!searchString) return;
+    await navigator.clipboard.writeText(searchString);
+    setStickyCopied(true);
+    window.setTimeout(() => setStickyCopied(false), 1400);
+  }
+
   return (
     <main className="app-shell">
       <header className="hero">
@@ -373,7 +395,7 @@ function App() {
 
       <section className="builder" aria-label="Search builder">
         {/* ── Result panel ── */}
-        <div className="result-panel">
+        <div className="result-panel" ref={resultPanelRef}>
           <div className="result-header">
             <div className="result-string-wrap">
               <span className="field-label">Generated search</span>
@@ -645,6 +667,37 @@ function App() {
       <footer>
         Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.
       </footer>
+
+      {/* ── Sticky copy bar ── */}
+      {searchString && (
+        <div className={`sticky-bar${resultVisible ? ' result-visible' : ''}`} role="region" aria-label="Quick copy">
+          <code className="sticky-string">{searchString}</code>
+          <div className="sticky-actions">
+            <button
+              className="sticky-icon-btn"
+              onClick={() => setSelected([])}
+              title="Clear search"
+              aria-label="Clear search"
+            >
+              <IconClose />
+            </button>
+            <button
+              className="sticky-icon-btn"
+              onClick={() => {
+                const name = `Search ${saves.length + 1}`;
+                save(name, searchString, selected as import('./useSavedSearches').SavedSelection[]);
+              }}
+              title="Quick-save (rename from the saved drawer)"
+              aria-label="Save search"
+            >
+              <IconBookmark />
+            </button>
+            <button className="sticky-copy-btn" onClick={stickyCopy}>
+              {stickycopied ? '✓' : 'Copy'}
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
