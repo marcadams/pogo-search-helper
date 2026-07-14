@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { searchOptions, orOnlyGroups, type SearchOption } from './searchOptions';
+import { useSavedSearches } from './useSavedSearches';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -220,11 +221,41 @@ function IconExclude() {
   );
 }
 
+function IconNot() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+      <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.6" />
+      <line x1="3" y1="10" x2="10" y2="3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function IconClose() {
   return (
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
       <line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
       <line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconBookmark({ filled }: { filled?: boolean }) {
+  return (
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+      <path
+        d="M3 2.5A1.5 1.5 0 0 1 4.5 1h6A1.5 1.5 0 0 1 12 2.5v11l-4.5-3-4.5 3V2.5Z"
+        stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+        fill={filled ? 'currentColor' : 'none'}
+      />
+    </svg>
+  );
+}
+
+function IconChevron({ open }: { open: boolean }) {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"
+         style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform .2s' }}>
+      <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -235,6 +266,10 @@ function App() {
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const saveInputRef = useRef<HTMLInputElement>(null);
+  const { saves, save, remove } = useSavedSearches();
 
   const searchString = useMemo(() => {
     if (selected.length === 0) return '';
@@ -255,16 +290,16 @@ function App() {
     [],
   );
 
-  function addOption(option: SearchOption, joiner: '&' | ',') {
+  function addOption(option: SearchOption, joiner: '&' | ',', excluded = false) {
     setSelected(current => {
       if (current.some(item => item.id === option.id)) return current;
       // Force OR if AND would be a logical contradiction
       const effectiveJoiner = joiner === '&' && andConflictReason(option, current) ? ',' : joiner;
-      return [...current, { ...option, excluded: false, joiner: effectiveJoiner }];
+      return [...current, { ...option, excluded, joiner: effectiveJoiner }];
     });
   }
 
-  function addCustom(joiner: '&' | ',') {
+  function addCustom(joiner: '&' | ',', excluded = false) {
     const token = customTerm.trim();
     if (!token) return;
     setSelected(current => [
@@ -275,7 +310,7 @@ function App() {
         token,
         category: 'Other',
         description: 'Custom search term.',
-        excluded: false,
+        excluded,
         joiner,
       },
     ]);
@@ -305,6 +340,23 @@ function App() {
     setSelected(current => current.filter(x => x.id !== id));
   }
 
+  function saveSearch() {
+    if (!searchString) return;
+    save(saveName, searchString, selected as import('./useSavedSearches').SavedSelection[]);
+    setSaveName('');
+    // keep drawer open so user sees their save appear
+  }
+
+  function loadSearch(savedSelections: Selection[]) {
+    setSelected(savedSelections);
+    setDrawerOpen(false);
+  }
+
+  // Focus save input when drawer opens
+  useEffect(() => {
+    if (drawerOpen) saveInputRef.current?.focus();
+  }, [drawerOpen]);
+
   async function copySearch() {
     if (!searchString) return;
     await navigator.clipboard.writeText(searchString);
@@ -331,9 +383,77 @@ function App() {
               <span className="field-label">Generated search</span>
               <code>{searchString || 'Choose one or more filters below'}</code>
             </div>
-            <button className="primary" onClick={copySearch} disabled={!searchString}>
-              {copied ? '✓ Copied' : 'Copy'}
-            </button>
+            <div className="result-actions">
+              <button
+                className={`saved-btn${saves.length > 0 ? ' has-saves' : ''}`}
+                onClick={() => setDrawerOpen(o => !o)}
+                aria-expanded={drawerOpen}
+                aria-label={`Saved searches${saves.length > 0 ? ` (${saves.length})` : ''}`}
+                title="Saved searches"
+              >
+                <IconBookmark filled={saves.length > 0} />
+                {saves.length > 0 && <span className="saves-count">{saves.length}</span>}
+                <IconChevron open={drawerOpen} />
+              </button>
+              <button className="primary" onClick={copySearch} disabled={!searchString}>
+                {copied ? '✓ Copied' : 'Copy'}
+              </button>
+            </div>
+          </div>
+
+          {/* ── Saved searches drawer ── */}
+          <div className={`saves-drawer${drawerOpen ? ' open' : ''}`} aria-hidden={!drawerOpen}>
+            <div className="saves-drawer-inner">
+              {/* Save current search */}
+              <div className="saves-save-row">
+                <input
+                  ref={saveInputRef}
+                  className="saves-name-input"
+                  value={saveName}
+                  onChange={e => setSaveName(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && saveSearch()}
+                  placeholder="Name this search…"
+                  disabled={!searchString}
+                  aria-label="Name for saved search"
+                />
+                <button
+                  className="saves-save-btn"
+                  onClick={saveSearch}
+                  disabled={!searchString}
+                  title={searchString ? 'Save current search' : 'Build a search first'}
+                >
+                  Save
+                </button>
+              </div>
+
+              {/* Saved list */}
+              {saves.length === 0 ? (
+                <p className="saves-empty">No saved searches yet.</p>
+              ) : (
+                <ul className="saves-list" role="list">
+                  {saves.map(s => (
+                    <li key={s.id} className="saves-item">
+                      <button
+                        className="saves-load-btn"
+                        onClick={() => loadSearch(s.selections as Selection[])}
+                        title={s.string}
+                      >
+                        <span className="saves-item-name">{s.name}</span>
+                        <code className="saves-item-preview">{s.string}</code>
+                      </button>
+                      <button
+                        className="saves-delete-btn"
+                        onClick={() => remove(s.id)}
+                        aria-label={`Delete ${s.name}`}
+                        title="Delete"
+                      >
+                        <IconClose />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           {selected.length > 0 && (
@@ -374,7 +494,7 @@ function App() {
                         aria-label={lockedReason ? `OR only: ${lockedReason}` : `Joiner: ${isAnd ? 'AND' : 'OR'} — click to toggle`}
                         aria-disabled={!!lockedReason}
                       >
-                        {displayJoiner === '&' ? 'AND' : 'OR'}
+                        {displayJoiner === '&' ? <><code className="joiner-char">&amp;</code> AND</> : <><code className="joiner-char">,</code> OR</>}
                         {lockedReason && <span className="joiner-lock">🔒</span>}
                       </button>
                     );
@@ -402,17 +522,38 @@ function App() {
               className="add-btn add-btn--and"
               onClick={() => addCustom('&')}
               disabled={!customTerm.trim()}
-              title="Add with AND"
+              title={customTerm.trim() ? `Add as &${customTerm.trim()}` : 'Enter a term first'}
             >
-              <IconAnd /> AND
+              <IconAnd />
+              <span className="add-btn-inner">
+                <span className="add-btn-label">AND</span>
+                {customTerm.trim() && <code className="add-btn-preview">&amp;{customTerm.trim()}</code>}
+              </span>
             </button>
             <button
               className="add-btn add-btn--or"
               onClick={() => addCustom(',')}
               disabled={!customTerm.trim()}
-              title="Add with OR"
+              title={customTerm.trim() ? `Add as ,${customTerm.trim()}` : 'Enter a term first'}
             >
-              <IconOr /> OR
+              <IconOr />
+              <span className="add-btn-inner">
+                <span className="add-btn-label">OR</span>
+                {customTerm.trim() && <code className="add-btn-preview">,{customTerm.trim()}</code>}
+              </span>
+            </button>
+            <span className="add-btn-divider" aria-hidden="true" />
+            <button
+              className="add-btn add-btn--not"
+              onClick={() => addCustom('&', true)}
+              disabled={!customTerm.trim()}
+              title={customTerm.trim() ? `Add as !${customTerm.trim()}` : 'Enter a term first'}
+            >
+              <IconNot />
+              <span className="add-btn-inner">
+                <span className="add-btn-label">NOT</span>
+                {customTerm.trim() && <code className="add-btn-preview">!{customTerm.trim()}</code>}
+              </span>
             </button>
           </div>
         </div>
@@ -457,18 +598,39 @@ function App() {
                                   className="add-btn add-btn--and"
                                   onClick={() => addOption(option, '&')}
                                   disabled={!!reason}
-                                  title={reason ?? 'Add with AND'}
+                                  title={reason ?? `Add as &${option.token}`}
                                   aria-label={`Add ${option.label} with AND`}
                                 >
-                                  <IconAnd /> AND
+                                  <IconAnd />
+                                  <span className="add-btn-inner">
+                                    <span className="add-btn-label">AND</span>
+                                    <code className="add-btn-preview">&amp;{option.token}</code>
+                                  </span>
                                 </button>
                                 <button
                                   className="add-btn add-btn--or"
                                   onClick={() => addOption(option, ',')}
                                   aria-label={`Add ${option.label} with OR`}
-                                  title="Add with OR"
+                                  title={`Add as ,${option.token}`}
                                 >
-                                  <IconOr /> OR
+                                  <IconOr />
+                                  <span className="add-btn-inner">
+                                    <span className="add-btn-label">OR</span>
+                                    <code className="add-btn-preview">,{option.token}</code>
+                                  </span>
+                                </button>
+                                <span className="add-btn-divider" aria-hidden="true" />
+                                <button
+                                  className="add-btn add-btn--not"
+                                  onClick={() => addOption(option, '&', true)}
+                                  aria-label={`Add ${option.label} as NOT`}
+                                  title={`Add as !${option.token}`}
+                                >
+                                  <IconNot />
+                                  <span className="add-btn-inner">
+                                    <span className="add-btn-label">NOT</span>
+                                    <code className="add-btn-preview">!{option.token}</code>
+                                  </span>
                                 </button>
                               </>
                             );

@@ -100,6 +100,175 @@ h1 {
   gap: 20px;
 }
 .result-string-wrap { min-width: 0; flex: 1; }
+
+.result-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Saved button */
+.saved-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(148, 163, 184, .25);
+  border-radius: 12px;
+  background: rgba(148, 163, 184, .07);
+  color: #64748b;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: .8rem;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.saved-btn:hover {
+  background: rgba(148, 163, 184, .14);
+  border-color: rgba(148, 163, 184, .4);
+  color: #94a3b8;
+}
+.saved-btn.has-saves {
+  border-color: rgba(56, 189, 248, .3);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, .08);
+}
+.saved-btn.has-saves:hover {
+  background: rgba(56, 189, 248, .15);
+}
+.saves-count {
+  font-size: .72rem;
+  font-weight: 900;
+  background: #38bdf8;
+  color: #04111d;
+  border-radius: 999px;
+  padding: 1px 6px;
+  line-height: 1.4;
+}
+
+/* Drawer */
+.saves-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.saves-drawer.open {
+  max-height: 600px;
+}
+.saves-drawer-inner {
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid rgba(148, 163, 184, .12);
+}
+
+/* Save row */
+.saves-save-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.saves-name-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(148, 163, 184, .2);
+  border-radius: 10px;
+  background: rgba(148, 163, 184, .06);
+  color: #f8fafc;
+  padding: 9px 12px;
+  font-size: .88rem;
+  outline: none;
+  transition: border-color .15s;
+}
+.saves-name-input:focus { border-color: #38bdf8; }
+.saves-name-input::placeholder { color: #475569; }
+.saves-name-input:disabled { opacity: .4; cursor: not-allowed; }
+.saves-save-btn {
+  flex-shrink: 0;
+  border: 1px solid rgba(56, 189, 248, .35);
+  border-radius: 10px;
+  background: rgba(56, 189, 248, .1);
+  color: #38bdf8;
+  padding: 9px 16px;
+  font-weight: 800;
+  font-size: .85rem;
+  transition: background .15s, border-color .15s;
+}
+.saves-save-btn:not(:disabled):hover {
+  background: rgba(56, 189, 248, .2);
+  border-color: #38bdf8;
+}
+.saves-save-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Saved list */
+.saves-empty {
+  margin: 0;
+  color: #475569;
+  font-size: .85rem;
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.saves-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.saves-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.saves-load-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border: 1px solid rgba(148, 163, 184, .15);
+  border-radius: 10px;
+  background: rgba(148, 163, 184, .05);
+  color: #e2e8f0;
+  padding: 9px 12px;
+  text-align: left;
+  transition: background .15s, border-color .15s;
+  overflow: hidden;
+}
+.saves-load-btn:hover {
+  background: rgba(56, 189, 248, .08);
+  border-color: rgba(56, 189, 248, .3);
+}
+.saves-item-name {
+  font-size: .88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.saves-item-preview {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: .75rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.saves-delete-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: #475569;
+  padding: 8px;
+  border-radius: 8px;
+  transition: color .15s, background .15s;
+}
+.saves-delete-btn:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, .1);
+}
 .field-label {
   display: block;
   color: #93a4b8;
@@ -212,6 +381,15 @@ h1 {
   background: rgba(167, 139, 250, .18);
   color: #c4b5fd;
 }
+.joiner-badge--or:hover {
+  background: rgba(167, 139, 250, .32);
+  color: #ddd6fe;
+}
+.joiner-char {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: .75em;
+  opacity: .8;
+}
 .joiner-badge--locked {
   cursor: default;
   opacity: 0.7;
@@ -256,11 +434,21 @@ h1 {
 }
 .custom-row input::placeholder { color: #475569; }
 
-/* ── Add buttons (AND / OR) ──────────────────────────────────────────────── */
+/* ── Add buttons (AND / OR / NOT) ───────────────────────────────────────── */
 .add-buttons {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 5px;
   flex-shrink: 0;
+}
+
+.add-btn-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(148, 163, 184, .2);
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin: 0 2px;
 }
 
 .add-btn {
@@ -271,11 +459,34 @@ h1 {
   font-size: .78rem;
   font-weight: 800;
   letter-spacing: .05em;
-  padding: 7px 11px;
+  padding: 6px 10px;
   border: 1px solid transparent;
   transition: background .15s, border-color .15s, color .15s, transform .1s;
+  line-height: 1;
 }
 .add-btn:not(:disabled):active { transform: scale(.95); }
+
+/* Two-line inner layout: label on top, token preview below */
+.add-btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+.add-btn-label {
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  line-height: 1;
+}
+.add-btn-preview {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: .67rem;
+  font-weight: 400;
+  opacity: .65;
+  letter-spacing: 0;
+  line-height: 1;
+}
 
 .add-btn--and {
   background: rgba(56, 189, 248, .12);
@@ -297,6 +508,18 @@ h1 {
   background: rgba(167, 139, 250, .24);
   border-color: #a78bfa;
   color: #ddd6fe;
+}
+
+.add-btn--not {
+  background: rgba(251, 146, 60, .10);
+  border-color: rgba(251, 146, 60, .28);
+  color: #fdba74;
+  border-radius: 7px; /* slightly more squared to signal it's different */
+}
+.add-btn--not:not(:disabled):hover {
+  background: rgba(251, 146, 60, .22);
+  border-color: #fb923c;
+  color: #fed7aa;
 }
 
 /* ── Option groups ───────────────────────────────────────────────────────── */
@@ -340,7 +563,9 @@ h2 { margin: 0 0 14px; font-size: 1.05rem; font-weight: 700; color: #e2e8f0; }
 
 .option-card-actions {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
   margin-top: 12px;
 }
 .option-card-actions--active {
@@ -387,8 +612,11 @@ footer {
 @media (max-width: 600px) {
   .hero { border-radius: 16px; }
   .result-header { align-items: stretch; flex-direction: column; }
+  .result-actions { justify-content: flex-end; }
   .custom-row { flex-wrap: wrap; }
   .custom-row input { width: 100%; }
   .option-card-actions { flex-direction: column; }
   .add-btn { justify-content: center; }
+  .saves-load-btn { flex-direction: column; align-items: flex-start; gap: 3px; }
+  .saves-item-preview { max-width: 100%; }
 }
