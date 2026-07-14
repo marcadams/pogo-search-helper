@@ -1,89 +1,52 @@
 # 🔍 Pokémon GO Search Helper
 
-> Stop typing `4*&!shadow&!purified&shiny` from memory. Build it with a few taps instead.
+[![Deploy](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/deploy.yml)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
 
-Pokémon GO's search bar is surprisingly powerful — but the syntax is cryptic enough that most trainers only ever use it for basic stuff like `shiny` or `4*`. This tool exposes the full vocabulary and lets you snap filters together visually, with instant AND / OR logic per term and a one-tap copy to clipboard.
+**Stop typing `4*&!shadow&shiny` from memory.**
 
-**[Live app →](https://marcadams.github.io/pogo-search-helper/)**
+A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combine them with AND / OR logic, copy the result, paste it into the game.
 
----
-
-## What it does
-
-Pick any combination of filters from categories like Appraisal, Status, Type, Move, Evolution, Catch Source, Region, Buddy, Size, and more. Each filter card shows the exact search token the game expects, so you learn the syntax as you go.
-
-Tap **AND** to narrow your results, **OR** to broaden them. Mix and match freely — the app knows which filters are mutually exclusive (star ratings, gender, size, region...) and prevents logical contradictions automatically. Add custom terms for anything not covered by the presets, like `cp1500-2500` or a specific Pokémon name.
-
-When you're done, hit **Copy** and paste directly into the Pokémon GO storage search bar.
-
-### Example searches you can build
-
-| Goal | Search string |
-|---|---|
-| Perfect IV shinies | `4*&shiny` |
-| PvP Great League candidates | `3*,4*&cp-1500` |
-| Shadow Pokémon that can be purified for new dex entries | `shadow&evolvenew` |
-| Lucky trades from far away | `lucky&distance300-` |
-| Everything caught this year that you haven't touched | `year2026&!favorite` |
-| Buddy-ready Pokémon with legacy moves | `buddy4,buddy5&@special` |
+**[Open the app →](https://marcadams.github.io/pogo-search-helper/)**
 
 ---
 
 ## Features
 
-- **130+ search tokens** across 14 categories, sourced from the complete in-game vocabulary
-- **Per-term AND / OR** — each filter carries its own joiner, so you can mix logic in a single string
-- **Mutual exclusivity enforcement** — AND is disabled between star ratings, genders, sizes, regions, and other groups where a Pokémon can only ever match one
-- **Exclude toggle** — flip any selected filter to `!token` to invert it
-- **Custom terms** — type in anything the presets don't cover
-- **One-tap copy** — result goes straight to your clipboard
+- **130+ tokens** across 14 categories — Appraisal, Type, Move, Evolution, Catch Source, Region, Buddy, Size, and more
+- **Per-term AND / OR** — mix logic freely in a single string
+- **Mutual exclusivity checks** — AND is blocked between star ratings, genders, sizes, regions, and other groups where it'd always return nothing
+- **Exclude toggle** — flip any filter to `!token`
+- **Custom terms** — for anything not covered by the presets
+- **One-tap copy** to clipboard
+
+## Example searches
+
+| What you want | String |
+|---|---|
+| Perfect IV shinies | `4*&shiny` |
+| PvP Great League candidates | `3*,4*&cp-1500` |
+| Shadows worth purifying for dex | `shadow&evolvenew` |
+| Long-distance lucky trades | `lucky&distance300-` |
+| This year's catches, unfavorited | `year2026&!favorite` |
+| Best buddies with legacy moves | `buddy4,buddy5&@special` |
 
 ---
 
-## Updating search terms
+## Contributing
 
-Edit `src/searchOptions.ts`. The search vocabulary is deliberately kept separate from the UI so it can be updated when Niantic adds new tokens without touching any component code.
-
----
-
-## Developer setup
-
-### Prerequisites
-
-- **Node.js** 20.19+ or 22.12+ (22 LTS recommended)
-- **npm** (included with Node.js)
-
-### Run locally
+Contributions are welcome. The search vocabulary lives entirely in [`src/searchOptions.ts`](src/searchOptions.ts) — adding or updating tokens doesn't require touching any UI code.
 
 ```bash
+# Fork, clone, then:
 npm install
 npm run dev
 ```
 
-Vite starts a dev server, usually at `http://localhost:5173`. Changes to source files hot-reload instantly.
+Open `http://localhost:5173`.
 
-### Production build
+## License
 
-```bash
-npm run build
-```
+[CC BY-NC 4.0](LICENSE) — free to use, share, and modify with attribution. Commercial use is not permitted.
 
-TypeScript is checked and the app is bundled to `dist/`. Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-### Deployment
-
-The app is deployed automatically to GitHub Pages via GitHub Actions on every push to `main`. The workflow lives at `.github/workflows/deploy.yml`.
-
-To enable it on a fork:
-
-1. Go to **Settings → Pages** in your repository
-2. Set the source to **GitHub Actions**
-3. Push to `main` — the action builds and deploys in about a minute
-
----
-
-*Fan-made utility. Pokémon and Pokémon GO are trademarks of Nintendo, Creatures Inc., and GAME FREAK inc.*
+This project is an independent fan-made utility. Pokémon and Pokémon GO are trademarks of Nintendo, Creatures Inc., and GAME FREAK inc. Pokémon GO is developed and published by Scopely (acquired from Niantic in 2025). This project is not affiliated with, endorsed by, or connected to any of these companies.
