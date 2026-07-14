@@ -26,8 +26,8 @@ function HeroGraphic() {
         <defs>
           {/* Radial glow for the ball */}
           <radialGradient id="ballGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
+            <stop offset="0%" stopColor="#e879f9" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#e879f9" stopOpacity="0" />
           </radialGradient>
           {/* Top-half fill */}
           <linearGradient id="ballTop" x1="0" y1="0" x2="0" y2="1">
@@ -47,8 +47,6 @@ function HeroGraphic() {
           <mask id="radarMask">
             <rect x="0" y="0" width="800" height="220" fill="url(#radarFade)" />
           </mask>
-          {/* Clip for pill labels */}
-          <clipPath id="pillClip0"><rect rx="12" ry="12" width="72" height="26" /></clipPath>
 
           {/* Subtle scanline texture */}
           <pattern id="scanlines" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
@@ -60,13 +58,12 @@ function HeroGraphic() {
         <rect x="0" y="0" width="800" height="220" fill="url(#scanlines)" />
 
         {/* ── Radar rings centred on the Pokéball ── */}
-        <g mask="url(#radarMask)" opacity="0.18">
+        <g mask="url(#radarMask)" opacity="0.2">
           {[60, 100, 145, 195, 250, 310].map((r, i) => (
-            <circle key={i} cx="400" cy="110" r={r} fill="none" stroke="#38bdf8" strokeWidth="1" />
+            <circle key={i} cx="400" cy="110" r={r} fill="none" stroke="#e879f9" strokeWidth="1" />
           ))}
-          {/* Cross-hairs */}
-          <line x1="400" y1="0"   x2="400" y2="220" stroke="#38bdf8" strokeWidth="0.6" />
-          <line x1="150" y1="110" x2="650" y2="110" stroke="#38bdf8" strokeWidth="0.6" />
+          <line x1="400" y1="0"   x2="400" y2="220" stroke="#e879f9" strokeWidth="0.6" />
+          <line x1="150" y1="110" x2="650" y2="110" stroke="#e879f9" strokeWidth="0.6" />
         </g>
 
         {/* ── Pokéball shadow glow ── */}
@@ -88,14 +85,13 @@ function HeroGraphic() {
         <circle cx="397" cy="107" r="3"  fill="white" opacity="0.55" />
 
         {/* ── Search-bar graphic below ball ── */}
-        <rect x="268" y="178" width="264" height="30" rx="15" fill="rgba(15,30,50,0.85)" stroke="rgba(56,189,248,0.35)" strokeWidth="1.2" />
-        <circle cx="287" cy="193" r="7" fill="none" stroke="#38bdf8" strokeWidth="1.5" opacity="0.7" />
-        <line x1="292" y1="198" x2="297" y2="203" stroke="#38bdf8" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
-        {/* fake text cursor */}
-        <rect x="304" y="186" width="80" height="2.5" rx="1.25" fill="#38bdf8" opacity="0.25" />
-        <rect x="304" y="191" width="52" height="2.5" rx="1.25" fill="#38bdf8" opacity="0.18" />
-        <rect x="358" y="186" width="2" height="14" rx="1" fill="#38bdf8" opacity="0.7">
-          <animate attributeName="opacity" values="0.7;0;0.7" dur="1.1s" repeatCount="indefinite" />
+        <rect x="268" y="178" width="264" height="30" rx="15" fill="rgba(28,16,40,0.9)" stroke="rgba(232,121,249,0.4)" strokeWidth="1.2" />
+        <circle cx="287" cy="193" r="7" fill="none" stroke="#e879f9" strokeWidth="1.5" opacity="0.7" />
+        <line x1="292" y1="198" x2="297" y2="203" stroke="#e879f9" strokeWidth="1.5" strokeLinecap="round" opacity="0.7" />
+        <rect x="304" y="186" width="80" height="2.5" rx="1.25" fill="#e879f9" opacity="0.2" />
+        <rect x="304" y="191" width="52" height="2.5" rx="1.25" fill="#e879f9" opacity="0.15" />
+        <rect x="358" y="186" width="2" height="14" rx="1" fill="#f0abfc" opacity="0.8">
+          <animate attributeName="opacity" values="0.8;0;0.8" dur="1.1s" repeatCount="indefinite" />
         </rect>
 
         {/* ── Floating type pills ── */}
