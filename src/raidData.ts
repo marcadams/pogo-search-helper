@@ -30,7 +30,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Electric', multiplier: '1.6x' },
       { type: 'Steel', multiplier: '1.6x' },
     ],
-    counterSearch: '@1rock&@2rock,@1fire&@2fire,@1electric&@2electric,@1steel&@2steel',
+    counterSearch: '@1rock,@2rock,@1fire,@2fire,@1electric,@2electric,@1steel,@2steel',
     note: 'Double weak to Rock. Rampardos, Rhyperior, Tyranitar with Smack Down are top picks.',
   },
   {
@@ -43,7 +43,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Rock', multiplier: '1.6x' },
       { type: 'Ice', multiplier: '1.6x' },
     ],
-    counterSearch: '@1rock&@2rock,@1ice&@2ice',
+    counterSearch: '@1rock,@2rock,@1ice,@2ice',
     note: 'Rock is preferred for STAB overlap with many Ground types. Rhyperior, Rampardos, Mamoswine.',
   },
   {
@@ -57,7 +57,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Electric', multiplier: '1.6x' },
       { type: 'Water', multiplier: '1.6x' },
     ],
-    counterSearch: '@1rock&@2rock,@1electric&@2electric,@1water&@2water',
+    counterSearch: '@1rock,@2rock,@1electric,@2electric,@1water,@2water',
     note: 'Double weak to Rock. Rampardos and Rhyperior dominate. Water and Electric are backup options.',
   },
   {
@@ -70,7 +70,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Electric', multiplier: '1.6x' },
       { type: 'Grass', multiplier: '1.6x' },
     ],
-    counterSearch: '@1electric&@2electric,@1grass&@2grass',
+    counterSearch: '@1electric,@2electric,@1grass,@2grass',
     note: 'Prioritize Electric (Kartana, Zekrom, Xurkitree). Grass is equally effective but fewer top options.',
   },
   {
@@ -85,7 +85,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Ghost', multiplier: '1.6x' },
       { type: 'Dark', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fire&@2fire,@1ground&@2ground,@1ghost&@2ghost,@1dark&@2dark',
+    counterSearch: '@1fire,@2fire,@1ground,@2ground,@1ghost,@2ghost,@1dark,@2dark',
     note: 'Many weaknesses to exploit. Reshiram, Chandelure (Ghost/Fire), Groudon, Darkrai all work.',
   },
   {
@@ -101,7 +101,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Dragon', multiplier: '1.6x' },
       { type: 'Fairy', multiplier: '1.6x' },
     ],
-    counterSearch: '@1steel&@2steel,@1fighting&@2fighting,@1fairy&@2fairy,@1dragon&@2dragon',
+    counterSearch: '@1steel,@2steel,@1fighting,@2fighting,@1fairy,@2fairy,@1dragon,@2dragon',
     note: 'Many weaknesses. Steel (Metagross) and Fighting (Lucario, Terrakion) are safest. Dragon hits hard but takes SE back.',
   },
 
@@ -116,7 +116,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Dragon', multiplier: '1.6x' },
       { type: 'Fairy', multiplier: '1.6x' },
     ],
-    counterSearch: '@1dragon&@2dragon,@1fairy&@2fairy',
+    counterSearch: '@1dragon,@2dragon,@1fairy,@2fairy',
     note: 'Dragon and Fairy equally effective. Dragon counters hit hard but take SE damage back. Fairy is safer.',
   },
 
@@ -132,7 +132,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Fighting', multiplier: '1.6x' },
       { type: 'Ground', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fire&@2fire,@1fighting&@2fighting,@1ground&@2ground',
+    counterSearch: '@1fire,@2fire,@1fighting,@2fighting,@1ground,@2ground',
     note: 'Fire is best (Reshiram, Chandelure). Ground (Groudon) and Fighting (Conkeldurr) also strong.',
   },
   {
@@ -148,7 +148,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Flying', multiplier: '1.6x' },
       { type: 'Bug', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fire&@2fire,@1ice&@2ice,@1flying&@2flying,@1poison&@2poison',
+    counterSearch: '@1fire,@2fire,@1ice,@2ice,@1flying,@2flying,@1poison,@2poison',
     note: 'Many weaknesses. Fire and Ice are the strongest options (Reshiram, Mamoswine, Galarian Darmanitan).',
   },
   {
@@ -163,7 +163,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Fairy', multiplier: '1.6x' },
       { type: 'Rock', multiplier: '1.6x' },
     ],
-    counterSearch: '@1ice&@2ice,@1dragon&@2dragon,@1fairy&@2fairy,@1rock&@2rock',
+    counterSearch: '@1ice,@2ice,@1dragon,@2dragon,@1fairy,@2fairy,@1rock,@2rock',
     note: 'Double weak to Ice. Mamoswine, Galarian Darmanitan, and Glaceon are top picks. Dragon works but risky.',
   },
   {
@@ -177,7 +177,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Fighting', multiplier: '1.6x' },
       { type: 'Ground', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fire&@2fire,@1fighting&@2fighting,@1ground&@2ground',
+    counterSearch: '@1fire,@2fire,@1fighting,@2fighting,@1ground,@2ground',
     note: 'Same weaknesses as Lucario. Reshiram, Groudon, Conkeldurr, Lucario all strong picks.',
   },
 
@@ -191,7 +191,7 @@ export const raidBosses: RaidBoss[] = [
     weaknesses: [
       { type: 'Fighting', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fighting&@2fighting',
+    counterSearch: '@1fighting,@2fighting',
     note: 'Only weak to Fighting. Machamp, Lucario, Conkeldurr. Chansey is extremely bulky — bring your best.',
   },
   {
@@ -207,7 +207,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Ice', multiplier: '1.6x' },
       { type: 'Dragon', multiplier: '1.6x' },
     ],
-    counterSearch: '@1fairy&@2fairy,@1fighting&@2fighting,@1ice&@2ice,@1dragon&@2dragon',
+    counterSearch: '@1fairy,@2fairy,@1fighting,@2fighting,@1ice,@2ice,@1dragon,@2dragon',
     note: 'Double weak to Fairy. Gardevoir, Togekiss, Sylveon demolish it. Fighting and Ice also strong.',
   },
   {
@@ -220,7 +220,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Ground', multiplier: '1.6x' },
       { type: 'Psychic', multiplier: '1.6x' },
     ],
-    counterSearch: '@1ground&@2ground,@1psychic&@2psychic',
+    counterSearch: '@1ground,@2ground,@1psychic,@2psychic',
     note: 'Ground and Psychic. Groudon, Garchomp, Mewtwo, Espeon all work well.',
   },
   {
@@ -233,7 +233,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Electric', multiplier: '1.6x' },
       { type: 'Grass', multiplier: '1.6x' },
     ],
-    counterSearch: '@1electric&@2electric,@1grass&@2grass',
+    counterSearch: '@1electric,@2electric,@1grass,@2grass',
     note: 'Same as Kyogre counters — Electric and Grass. Zekrom, Kartana, Roserade.',
   },
 
@@ -247,7 +247,7 @@ export const raidBosses: RaidBoss[] = [
     weaknesses: [
       { type: 'Ground', multiplier: '1.6x' },
     ],
-    counterSearch: '@1ground&@2ground',
+    counterSearch: '@1ground,@2ground',
     note: 'Only weak to Ground. Garchomp, Groudon, Excadrill, Landorus.',
   },
 ];

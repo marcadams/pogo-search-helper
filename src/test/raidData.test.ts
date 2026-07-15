@@ -32,6 +32,13 @@ describe('raidData', () => {
     }
   });
 
+  it('counter search strings use only OR (commas) between terms', () => {
+    for (const boss of raidBosses) {
+      // Should not contain & operator
+      expect(boss.counterSearch).not.toContain('&');
+    }
+  });
+
   it('every weakness type is a valid Pokemon type', () => {
     const validTypes = [
       'Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice',
