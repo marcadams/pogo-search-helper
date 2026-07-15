@@ -1,6 +1,7 @@
 # 🔍 Pokémon GO Search Helper
 
 [![Deploy](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/deploy.yml/badge.svg)](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/deploy.yml)
+[![Tests](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/test.yml/badge.svg)](https://github.com/YOUR_USERNAME/pogo-search-helper/actions/workflows/test.yml)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
 
 **Stop typing `4*&!shadow&shiny` from memory.**
@@ -54,6 +55,15 @@ npm run dev
 ```
 
 Open `http://localhost:5173`.
+
+### Running tests
+
+```bash
+npm test          # single run
+npm run test:watch  # watch mode
+```
+
+26 tests cover search options validation, recipe data integrity, the saved searches hook, and the main App component.
 
 ### Production build
 
