@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 
 ---
 
+## 2025-07-15 (late evening)
+
+### Added
+- **Google Analytics (GA4)** — `G-6C5GSQ2462` integrated via gtag.js in `index.html`
+- **Tab switch tracking** — fires `page_view` events with page_title `Builder` or `Recipes` on tab change
+- **Recipe copy tracking** — fires custom `copy_recipe` event with `recipe_id` and `recipe_string` for popularity metrics
+- **Transfer disclaimer** — amber warning in footer and README reminding users to review Pokemon before transferring; no liability accepted
+- **`global.d.ts`** — TypeScript declaration for `window.gtag`
+
+---
+
 ## 2025-07-15 (evening)
 
 ### Added

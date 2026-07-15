@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { recipes } from './recipeData';
+import { recipes, type Recipe } from './recipeData';
 
 export default function RecipesPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -18,6 +18,7 @@ export default function RecipesPage() {
     await navigator.clipboard.writeText(str);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 1400);
+    window.gtag?.('event', 'copy_recipe', { recipe_id: id, recipe_string: str });
   }
 
   return (
@@ -31,7 +32,7 @@ export default function RecipesPage() {
         <div key={category} className="recipes-group">
           <h3>{category}</h3>
           <div className="recipes-grid">
-            {items.map(recipe => (
+            {items.map((recipe: Recipe) => (
               <div key={recipe.id} className="recipe-card">
                 <div className="recipe-card-body">
                   <strong>{recipe.name}</strong>

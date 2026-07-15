@@ -399,13 +399,13 @@ function App() {
       <nav className="tab-nav" aria-label="Main navigation">
         <button
           className={`tab-btn${view === 'builder' ? ' active' : ''}`}
-          onClick={() => setView('builder')}
+          onClick={() => { setView('builder'); window.gtag?.('event', 'page_view', { page_title: 'Builder', page_location: window.location.href + '#builder' }); }}
         >
           Builder
         </button>
         <button
           className={`tab-btn${view === 'recipes' ? ' active' : ''}`}
-          onClick={() => setView('recipes')}
+          onClick={() => { setView('recipes'); window.gtag?.('event', 'page_view', { page_title: 'Recipes', page_location: window.location.href + '#recipes' }); }}
         >
           Recipes
         </button>
