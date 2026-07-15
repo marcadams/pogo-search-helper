@@ -1,6 +1,7 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
 import { searchOptions, orOnlyGroups, type SearchOption } from './searchOptions';
 import { useSavedSearches } from './useSavedSearches';
+import RecipesPage from './RecipesPage';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -259,6 +260,7 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
+  const [view, setView] = useState<'builder' | 'recipes'>('builder');
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
@@ -393,6 +395,23 @@ function App() {
         </div>
       </header>
 
+      {/* ── Tab navigation ── */}
+      <nav className="tab-nav" aria-label="Main navigation">
+        <button
+          className={`tab-btn${view === 'builder' ? ' active' : ''}`}
+          onClick={() => setView('builder')}
+        >
+          Builder
+        </button>
+        <button
+          className={`tab-btn${view === 'recipes' ? ' active' : ''}`}
+          onClick={() => setView('recipes')}
+        >
+          Recipes
+        </button>
+      </nav>
+
+      {view === 'builder' ? (
       <section className="builder" aria-label="Search builder">
         {/* ── Result panel ── */}
         <div className="result-panel" ref={resultPanelRef}>
@@ -663,6 +682,9 @@ function App() {
           ))}
         </div>
       </section>
+      ) : (
+      <RecipesPage />
+      )}
 
       <footer>
         Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.

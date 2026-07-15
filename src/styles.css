@@ -101,6 +101,37 @@ h1 {
   line-height: 1.5;
 }
 
+/* ── Tab navigation ──────────────────────────────────────────────────────── */
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  margin-top: 20px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.tab-btn {
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: transparent;
+  transition: color .15s, background .15s;
+}
+.tab-btn:hover {
+  color: var(--text-mid);
+  background: var(--surface2);
+}
+.tab-btn.active {
+  color: #1a0020;
+  background: var(--pink);
+  box-shadow: 0 2px 12px var(--pink-glow);
+}
+
 /* ── Builder grid ────────────────────────────────────────────────────────── */
 .builder { display: grid; gap: 18px; margin-top: 20px; }
 
@@ -584,6 +615,92 @@ h2 { margin: 0 0 14px; font-size: 1rem; font-weight: 700; color: var(--pink-brig
   transition: background .15s, border-color .15s;
 }
 .remove-option-btn:hover { background: rgba(248, 113, 113, .16); border-color: var(--danger); }
+
+/* ── Recipes page ────────────────────────────────────────────────────────── */
+.recipes-page {
+  margin-top: 20px;
+}
+.recipes-intro {
+  margin-bottom: 20px;
+}
+.recipes-intro h2 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.recipes-intro p {
+  color: var(--text-mid);
+  font-size: .92rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.recipes-group {
+  margin-bottom: 20px;
+}
+.recipes-group h3 {
+  color: var(--pink-bright);
+  font-size: .88rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border-muted);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 14px;
+  gap: 10px;
+  transition: border-color .15s;
+}
+.recipe-card:hover {
+  border-color: var(--border-mid);
+}
+.recipe-card-body { flex: 1; }
+.recipe-card-body strong {
+  display: block;
+  font-size: .92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.recipe-card-body code {
+  display: block;
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: .8rem;
+  color: var(--pink-bright);
+  margin-bottom: 6px;
+  word-break: break-all;
+}
+.recipe-card-body span {
+  display: block;
+  font-size: .8rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+.recipe-copy-btn {
+  align-self: flex-end;
+  border: 1px solid var(--border-mid);
+  border-radius: 9px;
+  background: var(--pink-subtle);
+  color: var(--pink-bright);
+  padding: 7px 14px;
+  font-size: .82rem;
+  font-weight: 800;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+}
+.recipe-copy-btn:hover {
+  background: var(--pink-glow);
+  border-color: var(--pink);
+  box-shadow: 0 0 10px var(--pink-subtle);
+}
 
 /* ── Footer ──────────────────────────────────────────────────────────────── */
 footer {
