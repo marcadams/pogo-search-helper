@@ -7,44 +7,48 @@ All notable changes to this project are documented here.
 ## 2025-07-15
 
 ### Added
-- **Raid Counters tab** — third tab with counter search strings for all July 2025 raid bosses (Tier 5, Shadow, Mega, Dynamax), official artwork sprites from PokeAPI, type weakness pills with multipliers, type filter bar, search by name
-- **Raid boss roster** — Articuno, Zapdos, Moltres, Kyogre, Solgaleo, Kyurem, Shadow Palkia, Mega Lucario, Mega Sceptile, Mega Salamence, Mega Aggron, Dynamax Chansey/Deino/Trubbish/Feebas, Pikachu
-- **Raid tests** — `raidData.test.ts` (11 tests) and `RaidsPage.test.tsx` (13 tests) covering data integrity, rendering, filtering, and search
+- **Raid Counters tab** — third tab with counter search strings for raid bosses, official artwork sprites from PokeAPI, type weakness pills with multipliers, type filter bar, search by name
+- **47 raid bosses** — full roster including:
+  - Tier 5 (July 2025): Articuno, Zapdos, Moltres, Kyogre, Solgaleo, Kyurem, Shadow Palkia
+  - Historical Legendary: Mewtwo, Rayquaza, Groudon, Dialga, Giratina Origin, Reshiram, Zekrom, Lugia, Ho-Oh, Latios, Latias, Heatran, Cresselia, Regigigas, Landorus Therian, Tornadus Therian, Thundurus Therian, Xerneas, Yveltal, Zacian, Zamazenta
+  - Mythical: Darkrai, Deoxys, Genesect
+  - Mega (July + historical): Lucario, Sceptile, Salamence, Aggron, Gengar, Charizard Y, Gyarados, Latios, Rayquaza, Garchomp
+  - Dynamax (July): Chansey, Deino, Trubbish, Feebas
+  - Regular: Pikachu
+- **Raid tests** — `raidData.test.ts` (12 tests) and `RaidsPage.test.tsx` (13 tests)
 - **Test suite** — Vitest + React Testing Library + jsdom, 80+ tests across 7 suites
-- **CI test workflow** — `.github/workflows/test.yml` runs `npm test` on push/PR, 30s timeout for CI
-- **Google Analytics (GA4)** — gtag.js integrated; tab switches fire `page_view`, recipe/raid copies fire custom events
+- **CI test workflow** — `.github/workflows/test.yml` with 30s timeout
+- **Google Analytics (GA4)** — tab switches, recipe copies, raid counter copies tracked
 - **Transfer disclaimer** — amber warning in footer and README
-- **Recipes page** — 19 pre-made cleanup searches across 7 categories with one-tap copy
-- **Tab navigation** — pill-style nav switching between Builder, Recipes, and Raids
-- **Sticky copy bar** — fixed bottom bar with Copy, Save, and Clear; always visible on desktop, scroll-triggered on mobile
-- **Save & Load** — localStorage-backed saved searches with quick-save, inline drawer, auto-naming
-- **NOT button** — add filters as excluded (`!token`) directly from cards and custom input
+- **Recipes page** — 19 pre-made cleanup searches across 7 categories
+- **Tab navigation** — Builder, Recipes, Raids
+- **Sticky copy bar** — Copy, Save, Clear; always visible on desktop, scroll-triggered on mobile
+- **Save & Load** — localStorage-backed with quick-save and inline drawer
+- **NOT button** — add filters as excluded directly from cards
 - **Empty-state UX** — "Add" + "NOT" when nothing selected; full AND/OR/NOT after first selection
-- **Token preview on buttons** — shows exact token each button will produce
-- **Mutual exclusivity enforcement** — AND disabled between contradictory groups with locked joiner badges
-- **Per-term AND / OR joiner** — clickable badge between chips to toggle
-- **Expanded search options** — 130+ tokens across 14 categories, reconciled against Niantic's official docs
-- **Hyper Training** (`hypertraining`), **Buddy Level 0** (`buddy0`), **Move by name** (`@scratch`)
+- **Token preview on buttons** — shows exact token each button produces
+- **Mutual exclusivity enforcement** — AND disabled between contradictory groups
+- **Per-term AND / OR joiner** — clickable badge between chips
+- **130+ search options** across 14 categories, reconciled against Niantic docs
 - **Hero graphic** — inline SVG Pokeball with radar rings, floating pills, animated search bar
-- **GitHub Pages deployment** — Actions workflow with auto build/deploy
-- **`.gitignore`** — removed `node_modules/` and `.vscode/` from tracking
+- **GitHub Pages deployment** — auto build/deploy on push to main
 - **LICENSE** — CC BY-NC 4.0 with trademark disclaimer
 
 ### Changed
-- **Theme** — dark charcoal base with vibrant pink (`#e879f9`) accent, lifted surface layers, visible input borders
+- **Raid counter search strings** — switched from AND to all-OR syntax for wider counter coverage
+- **Raid categories** — Mega and Dynamax split into their own sections
+- **Theme** — dark charcoal with vibrant pink accent, lifted surfaces, visible input borders
 - **Mobile buttons** — compact row, token previews hidden at small sizes
-- **Hero SVG** — pink radar rings, search bar, and glow
-- **Joiner badges** — show syntax character alongside word (`& AND`, `, OR`)
-- **Joiner logic fix** — joiner now stored on preceding item (matches string generation)
+- **Joiner logic** — stored on preceding item to match string generation correctly
 
 ### Fixed
-- **SVG pills** — SVG-native `<animateTransform>` instead of broken CSS animation
-- **SVG clipping** — removed `preserveAspectRatio` and `max-height`
-- **tsconfig.node.json** — removed conflicting `allowImportingTsExtensions`
-- **CSS imports** — `vite-env.d.ts` with Vite client types
-- **vite.config.ts** — use `vitest/config` defineConfig for test property typing
-- **Recipe data** — eliminated curly quotes breaking TypeScript
-- **Test timeout** — increased to 30s for CI runners
+- SVG floating pills positioning (native `<animateTransform>`)
+- SVG clipping (removed `preserveAspectRatio` and `max-height`)
+- `tsconfig.node.json` conflicting options
+- CSS import declarations
+- `vite.config.ts` type error (`vitest/config`)
+- Recipe data curly quotes
+- Test timeout for CI runners
 
 ---
 
