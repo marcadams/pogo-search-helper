@@ -308,25 +308,39 @@ function App() {
       if (current.some(item => item.id === option.id)) return current;
       // Force OR if AND would be a logical contradiction
       const effectiveJoiner = joiner === '&' && andConflictReason(option, current) ? ',' : joiner;
-      return [...current, { ...option, excluded, joiner: effectiveJoiner }];
+      // The joiner connects the PREVIOUS item to this one.
+      // Set it on the last existing item, not on the new item.
+      if (current.length === 0) {
+        return [{ ...option, excluded, joiner: '&' }];
+      }
+      const updated = current.map((item, i) =>
+        i === current.length - 1 ? { ...item, joiner: effectiveJoiner } : item,
+      );
+      return [...updated, { ...option, excluded, joiner: '&' }];
     });
   }
 
   function addCustom(joiner: '&' | ',', excluded = false) {
     const token = customTerm.trim();
     if (!token) return;
-    setSelected(current => [
-      ...current,
-      {
+    setSelected(current => {
+      const newItem = {
         id: `custom-${crypto.randomUUID()}`,
         label: token,
         token,
-        category: 'Other',
+        category: 'Other' as const,
         description: 'Custom search term.',
         excluded,
-        joiner,
-      },
-    ]);
+        joiner: '&' as const,
+      };
+      if (current.length === 0) {
+        return [newItem];
+      }
+      const updated = current.map((item, i) =>
+        i === current.length - 1 ? { ...item, joiner } : item,
+      );
+      return [...updated, newItem];
+    });
     setCustomTerm('');
   }
 

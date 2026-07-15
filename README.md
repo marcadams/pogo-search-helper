@@ -63,8 +63,6 @@ npm test          # single run
 npm run test:watch  # watch mode
 ```
 
-26 tests cover search options validation, recipe data integrity, the saved searches hook, and the main App component.
-
 ### Production build
 
 ```bash
