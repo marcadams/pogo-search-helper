@@ -6,7 +6,7 @@
 
 **Stop typing `4*&!shadow&shiny` from memory.**
 
-A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combine them with AND / OR / NOT logic, copy the result, paste it into the game. Also includes a library of ready-made cleanup recipes for common storage tasks.
+A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combine them with AND / OR / NOT logic, copy the result, paste it into the game. Also includes cleanup recipes and a raid counter reference for current bosses.
 
 **[Open the app →](https://marcadams.github.io/pogo-search-helper/)**
 
@@ -17,15 +17,20 @@ A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combi
 - **130+ tokens** across 14 categories — Appraisal, Type, Move, Evolution, Catch Source, Region, Buddy, Size, and more
 - **Per-term AND / OR / NOT** — mix logic freely in a single string, with live token previews on every button
 - **Mutual exclusivity checks** — AND is blocked between star ratings, genders, sizes, regions, and other groups where it would always return nothing
-- **Cleanup Recipes** — 18 pre-made searches for bulk transfer, PvP hunting, shiny management, evolution sessions, shadow evaluation, trading prep, and quick checks
-- **Save & Load** — store your favorite searches in localStorage, quick-save from the sticky bar, load them back with one tap
+- **Raid Counters** — search strings for counters to every current raid boss, with type filters, weakness multipliers, and official artwork
+- **Cleanup Recipes** — 19 pre-made searches for bulk transfer, PvP hunting, shiny management, evolution sessions, and more
+- **Save & Load** — store your favorite searches in localStorage, quick-save from the sticky bar
 - **Sticky copy bar** — always-visible on desktop, slides up on mobile when you scroll past the result panel
 - **One-tap copy** to clipboard from anywhere
 - **Mobile-first** — responsive layout, compact touch targets, no wasted space
 
-## Recipes
+## Tabs
 
-Switch to the **Recipes** tab for ready-to-use searches including:
+### Builder
+Pick filters visually, combine with AND / OR / NOT, and copy the generated search string.
+
+### Recipes
+Ready-to-use searches for common storage tasks:
 
 | Category | Examples |
 |---|---|
@@ -37,16 +42,25 @@ Switch to the **Recipes** tab for ready-to-use searches including:
 | Trading Prep | Distance trade fodder, lucky trade targets |
 | Quick Checks | Hundos, nundos, legacy moves, mega-ready |
 
+### Raids
+Counter search strings for current raid bosses. Each string filters your storage for Pokemon with super-effective fast AND charged moves against that boss. Includes all July 2025 bosses:
+
+- **Tier 5:** Articuno, Zapdos, Moltres, Kyogre, Solgaleo, Kyurem
+- **Shadow:** Shadow Palkia
+- **Mega:** Mega Lucario, Mega Sceptile, Mega Salamence, Mega Aggron
+- **Dynamax:** Chansey, Deino, Trubbish, Feebas
+
 ---
 
 ## Contributing
 
-Contributions are welcome. Key files:
+Key files:
 
 - [`src/searchOptions.ts`](src/searchOptions.ts) — all search tokens and group definitions
 - [`src/recipeData.ts`](src/recipeData.ts) — pre-made recipe searches
+- [`src/raidData.ts`](src/raidData.ts) — raid boss counters (update monthly)
 
-Adding or updating tokens/recipes requires no UI code changes.
+Adding or updating tokens/recipes/raids requires no UI code changes.
 
 ```bash
 # Fork, clone, then:
@@ -72,7 +86,7 @@ npm run preview
 
 ### Deployment
 
-Deployed automatically to GitHub Pages via GitHub Actions on every push to `main`. The workflow lives at `.github/workflows/deploy.yml`.
+Deployed automatically to GitHub Pages via GitHub Actions on every push to `main`. Workflow at `.github/workflows/deploy.yml`.
 
 To enable on a fork:
 1. Go to **Settings → Pages**

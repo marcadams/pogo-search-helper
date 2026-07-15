@@ -2,6 +2,7 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { searchOptions, orOnlyGroups, type SearchOption } from './searchOptions';
 import { useSavedSearches } from './useSavedSearches';
 import RecipesPage from './RecipesPage';
+import RaidsPage from './RaidsPage';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -260,7 +261,7 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
-  const [view, setView] = useState<'builder' | 'recipes'>('builder');
+  const [view, setView] = useState<'builder' | 'recipes' | 'raids'>('builder');
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
@@ -422,6 +423,12 @@ function App() {
           onClick={() => { setView('recipes'); window.gtag?.('event', 'page_view', { page_title: 'Recipes', page_location: window.location.href + '#recipes' }); }}
         >
           Recipes
+        </button>
+        <button
+          className={`tab-btn${view === 'raids' ? ' active' : ''}`}
+          onClick={() => { setView('raids'); window.gtag?.('event', 'page_view', { page_title: 'Raids', page_location: window.location.href + '#raids' }); }}
+        >
+          Raids
         </button>
       </nav>
 
@@ -760,8 +767,10 @@ function App() {
           ))}
         </div>
       </section>
-      ) : (
+      ) : view === 'recipes' ? (
       <RecipesPage />
+      ) : (
+      <RaidsPage />
       )}
 
       <footer>
