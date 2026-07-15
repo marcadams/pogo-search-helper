@@ -16,6 +16,7 @@ export const recipes: Recipe[] = [
   { id: 'shiny-low-iv', name: 'Low-IV shinies', string: 'shiny&0*,1*', description: 'Shinies with bad IVs. Keep for trades or living dex.', category: 'Shiny Management' },
   { id: 'shiny-dupes', name: 'Shiny duplicates', string: 'shiny&count2-', description: 'Species where you have 2+ shinies. Great trade fodder.', category: 'Shiny Management' },
   { id: 'evolve-new-dex', name: 'Evolve for new dex entries', string: 'evolvenew', description: 'Pokemon that will fill a new Pokedex slot when evolved. Priority evolves.', category: 'Evolution Session' },
+  { id: 'evolve-new-now', name: 'Evolve right now for new dex', string: 'evolve&evolvenew', description: 'Pokemon you can evolve immediately for a new dex entry (have enough candy/items).', category: 'Evolution Session' },
   { id: 'evolve-mass', name: 'Bulk evolve (XP grind)', string: 'evolve&!legendary&!mythical&!shadow&!favorite', description: 'Everything you can evolve minus valuables. Pop a Lucky Egg and go.', category: 'Evolution Session' },
   { id: 'trade-evolve-free', name: 'Free trade evolves', string: 'tradeevolve&traded', description: 'Traded Pokemon you can evolve for free. No candy cost.', category: 'Evolution Session' },
   { id: 'shadow-good-iv', name: 'Shadows worth keeping', string: 'shadow&3*,4*', description: 'High-IV shadows. Shadow bonus is 20% extra damage in raids.', category: 'Shadow & Purification' },

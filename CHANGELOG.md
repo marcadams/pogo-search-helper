@@ -4,6 +4,21 @@ All notable changes to this project are documented here.
 
 ---
 
+## 2025-07-15 (evening)
+
+### Added
+- **Hyper Training token** — `hypertraining` status filter per Niantic's official docs
+- **Buddy Level 0** — `buddy0` for Pokemon with no buddy history
+- **Move by name example** — `@scratch` template for named-move searches
+- **Evolve right now recipe** — `evolve&evolvenew` combo in Evolution Session recipes (Niantic-recommended)
+- **Empty-state UX** — when no filters are selected, cards show "Add" + "NOT" only (no AND/OR since there's nothing to join with); full AND/OR/NOT appears after first selection
+
+### Changed
+- **README** — updated to reflect recipes, save/load, sticky bar, and all current features
+- **CHANGELOG** — created with full history
+
+---
+
 ## 2025-07-15
 
 ### Added

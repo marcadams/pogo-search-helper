@@ -72,6 +72,7 @@ export const searchOptions: SearchOption[] = [
   { id: 'specialbackground',  label: 'Special Background',      token: 'specialbackground',  category: 'Status', description: 'Pokémon that have a Special Background.' },
   { id: 'background',         label: 'Any Background',          token: 'background',         category: 'Status', description: 'Pokémon that have any background (location or special).' },
   { id: 'adventureeffect',    label: 'Adventure Effect Move',   token: 'adventureeffect',    category: 'Status', description: 'Pokémon that know a move with an Adventure Effect.' },
+  { id: 'hypertraining',     label: 'Hyper Training',           token: 'hypertraining',      category: 'Status', description: 'Pokémon currently undergoing Hyper Training.' },
 
   // ── Collection ───────────────────────────────────────────────────────────────
   { id: 'legendary',  label: 'Legendary',       token: 'legendary',  category: 'Collection', description: 'Legendary Pokémon.' },
@@ -118,6 +119,7 @@ export const searchOptions: SearchOption[] = [
 
 
   // ── Move ─────────────────────────────────────────────────────────────────────
+  { id: 'move-byname',   label: 'Specific move (by name)',     token: '@scratch', category: 'Move', description: 'Pokémon that know a specific move. Replace "scratch" with any move name.' },
   { id: 'move-any',      label: 'Any move (type filter)',        token: '@fire',    category: 'Move', description: 'Pokémon with at least one move of a given type. Replace "fire" with any type.' },
   { id: 'move-fast',     label: 'Fast move (type filter)',       token: '@1fire',   category: 'Move', description: 'Pokémon with a Fast Move of a given type. Replace "fire" with any type.' },
   { id: 'move-charged',  label: 'Charged move (type filter)',    token: '@2fire',   category: 'Move', description: 'Pokémon with a Charged Move of a given type. Replace "fire" with any type.' },
@@ -172,6 +174,7 @@ export const searchOptions: SearchOption[] = [
   { id: 'region-paldea', label: 'Paldea (Gen 9)', token: 'paldea', category: 'Region', group: 'region', description: 'Pokémon originally from the Paldea region.' },
 
   // ── Buddy ─────────────────────────────────────────────────────────────────────
+  { id: 'buddy0',    label: 'No Buddy History',            token: 'buddy0',    category: 'Buddy', group: 'buddy-level', description: 'Pokémon you have never set as a buddy.' },
   { id: 'buddy1',    label: 'Buddy Level 1 (Good)',       token: 'buddy1',    category: 'Buddy', group: 'buddy-level', description: 'Pokémon that have reached Good Buddy status.' },
   { id: 'buddy2',    label: 'Buddy Level 2 (Great)',      token: 'buddy2',    category: 'Buddy', group: 'buddy-level', description: 'Pokémon that have reached Great Buddy status.' },
   { id: 'buddy3',    label: 'Buddy Level 3 (Ultra)',      token: 'buddy3',    category: 'Buddy', group: 'buddy-level', description: 'Pokémon that have reached Ultra Buddy status.' },

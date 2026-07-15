@@ -555,43 +555,75 @@ function App() {
             placeholder="Add a custom term, e.g. cp1500"
           />
           <div className="add-buttons">
-            <button
-              className="add-btn add-btn--and"
-              onClick={() => addCustom('&')}
-              disabled={!customTerm.trim()}
-              title={customTerm.trim() ? `Add as &${customTerm.trim()}` : 'Enter a term first'}
-            >
-              <IconAnd />
-              <span className="add-btn-inner">
-                <span className="add-btn-label">AND</span>
-                {customTerm.trim() && <code className="add-btn-preview">&amp;{customTerm.trim()}</code>}
-              </span>
-            </button>
-            <button
-              className="add-btn add-btn--or"
-              onClick={() => addCustom(',')}
-              disabled={!customTerm.trim()}
-              title={customTerm.trim() ? `Add as ,${customTerm.trim()}` : 'Enter a term first'}
-            >
-              <IconOr />
-              <span className="add-btn-inner">
-                <span className="add-btn-label">OR</span>
-                {customTerm.trim() && <code className="add-btn-preview">,{customTerm.trim()}</code>}
-              </span>
-            </button>
-            <span className="add-btn-divider" aria-hidden="true" />
-            <button
-              className="add-btn add-btn--not"
-              onClick={() => addCustom('&', true)}
-              disabled={!customTerm.trim()}
-              title={customTerm.trim() ? `Add as !${customTerm.trim()}` : 'Enter a term first'}
-            >
-              <IconNot />
-              <span className="add-btn-inner">
-                <span className="add-btn-label">NOT</span>
-                {customTerm.trim() && <code className="add-btn-preview">!{customTerm.trim()}</code>}
-              </span>
-            </button>
+            {selected.length === 0 ? (
+              <>
+                <button
+                  className="add-btn add-btn--and"
+                  onClick={() => addCustom('&')}
+                  disabled={!customTerm.trim()}
+                  title={customTerm.trim() ? `Add ${customTerm.trim()}` : 'Enter a term first'}
+                >
+                  <IconAnd />
+                  <span className="add-btn-inner">
+                    <span className="add-btn-label">Add</span>
+                    {customTerm.trim() && <code className="add-btn-preview">{customTerm.trim()}</code>}
+                  </span>
+                </button>
+                <span className="add-btn-divider" aria-hidden="true" />
+                <button
+                  className="add-btn add-btn--not"
+                  onClick={() => addCustom('&', true)}
+                  disabled={!customTerm.trim()}
+                  title={customTerm.trim() ? `Add as !${customTerm.trim()}` : 'Enter a term first'}
+                >
+                  <IconNot />
+                  <span className="add-btn-inner">
+                    <span className="add-btn-label">NOT</span>
+                    {customTerm.trim() && <code className="add-btn-preview">!{customTerm.trim()}</code>}
+                  </span>
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="add-btn add-btn--and"
+                  onClick={() => addCustom('&')}
+                  disabled={!customTerm.trim()}
+                  title={customTerm.trim() ? `Add as &${customTerm.trim()}` : 'Enter a term first'}
+                >
+                  <IconAnd />
+                  <span className="add-btn-inner">
+                    <span className="add-btn-label">AND</span>
+                    {customTerm.trim() && <code className="add-btn-preview">&amp;{customTerm.trim()}</code>}
+                  </span>
+                </button>
+                <button
+                  className="add-btn add-btn--or"
+                  onClick={() => addCustom(',')}
+                  disabled={!customTerm.trim()}
+                  title={customTerm.trim() ? `Add as ,${customTerm.trim()}` : 'Enter a term first'}
+                >
+                  <IconOr />
+                  <span className="add-btn-inner">
+                    <span className="add-btn-label">OR</span>
+                    {customTerm.trim() && <code className="add-btn-preview">,{customTerm.trim()}</code>}
+                  </span>
+                </button>
+                <span className="add-btn-divider" aria-hidden="true" />
+                <button
+                  className="add-btn add-btn--not"
+                  onClick={() => addCustom('&', true)}
+                  disabled={!customTerm.trim()}
+                  title={customTerm.trim() ? `Add as !${customTerm.trim()}` : 'Enter a term first'}
+                >
+                  <IconNot />
+                  <span className="add-btn-inner">
+                    <span className="add-btn-label">NOT</span>
+                    {customTerm.trim() && <code className="add-btn-preview">!{customTerm.trim()}</code>}
+                  </span>
+                </button>
+              </>
+            )}
           </div>
         </div>
 
@@ -628,7 +660,39 @@ function App() {
                       ) : (
                         <div className="option-card-actions">
                           {(() => {
+                            const isEmpty = selected.length === 0;
                             const reason = andConflictReason(option, selected);
+                            if (isEmpty) {
+                              return (
+                                <>
+                                  <button
+                                    className="add-btn add-btn--and"
+                                    onClick={() => addOption(option, '&')}
+                                    aria-label={`Add ${option.label}`}
+                                    title={`Add ${option.token}`}
+                                  >
+                                    <IconAnd />
+                                    <span className="add-btn-inner">
+                                      <span className="add-btn-label">Add</span>
+                                      <code className="add-btn-preview">{option.token}</code>
+                                    </span>
+                                  </button>
+                                  <span className="add-btn-divider" aria-hidden="true" />
+                                  <button
+                                    className="add-btn add-btn--not"
+                                    onClick={() => addOption(option, '&', true)}
+                                    aria-label={`Add ${option.label} as NOT`}
+                                    title={`Add as !${option.token}`}
+                                  >
+                                    <IconNot />
+                                    <span className="add-btn-inner">
+                                      <span className="add-btn-label">NOT</span>
+                                      <code className="add-btn-preview">!{option.token}</code>
+                                    </span>
+                                  </button>
+                                </>
+                              );
+                            }
                             return (
                               <>
                                 <button
