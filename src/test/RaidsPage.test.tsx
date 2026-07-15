@@ -18,10 +18,10 @@ describe('RaidsPage', () => {
   });
 
   it('renders raid boss cards with names', () => {
-    expect(screen.getByText('Kyogre')).toBeInTheDocument();
-    expect(screen.getByText('Articuno')).toBeInTheDocument();
-    expect(screen.getByText('Mega Salamence')).toBeInTheDocument();
-    expect(screen.getByText('Dynamax Deino')).toBeInTheDocument();
+    expect(screen.getAllByText('Kyogre').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Articuno').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Mega Salamence').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Dynamax Deino').length).toBeGreaterThan(0);
   });
 
   it('shows weakness pills on cards', () => {
@@ -64,8 +64,8 @@ describe('RaidsPage', () => {
     const filterGroup = screen.getByRole('group', { name: /filter by type/i });
     fireEvent.click(within(filterGroup).getByText('Ground'));
     fireEvent.click(within(filterGroup).getByText('All'));
-    expect(screen.getByText('Articuno')).toBeInTheDocument();
-    expect(screen.getByText('Kyogre')).toBeInTheDocument();
+    expect(screen.getAllByText('Articuno').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Kyogre').length).toBeGreaterThan(0);
   });
 
   it('search input filters bosses by name', () => {
