@@ -1,5 +1,12 @@
 import { useState, useMemo } from 'react';
-import { raidBosses, spriteUrl, type RaidBoss } from './raidData';
+import { raidBosses, currentRotation, spriteUrl, type RaidBoss } from './raidData';
+
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function formatMonth(yyyyMm: string): string {
+  const [year, month] = yyyyMm.split('-');
+  return `${MONTH_NAMES[parseInt(month, 10) - 1]} ${year}`;
+}
 
 const ALL_TYPES = [
   'Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice',
@@ -8,6 +15,51 @@ const ALL_TYPES = [
 ];
 
 const CATEGORIES: RaidBoss['category'][] = ['Legendary', 'Mythical', 'Mega', 'Dynamax', 'Regular'];
+
+function RaidCard({ boss, copiedId, onCopy }: { boss: RaidBoss; copiedId: string | null; onCopy: (id: string, str: string) => void }) {
+  return (
+    <div className="raid-card">
+      <div className="raid-card-header">
+        <img
+          className="raid-card-sprite"
+          src={spriteUrl(boss.dexNumber)}
+          alt={boss.name}
+          loading="lazy"
+          width="64"
+          height="64"
+        />
+        <div className="raid-card-info">
+          <strong>{boss.name}</strong>
+          <span className="raid-card-types">{boss.types.join(' / ')}</span>
+          {boss.featuredMonths && boss.featuredMonths.length > 0 && (
+            <span className="raid-card-featured">Last: {formatMonth(boss.featuredMonths[0])}</span>
+          )}
+        </div>
+      </div>
+
+      <div className="raid-card-weaknesses">
+        <span className="raid-weakness-label">Weak to:</span>
+        {boss.weaknesses.map(w => (
+          <span key={w.type} className="raid-weakness-pill">
+            {w.type} <span className="raid-weakness-mult">{w.multiplier}</span>
+          </span>
+        ))}
+      </div>
+
+      {boss.note && <p className="raid-card-note">{boss.note}</p>}
+
+      <div className="raid-card-footer">
+        <code className="raid-card-string">{boss.counterSearch}</code>
+        <button
+          className="raid-copy-btn"
+          onClick={() => onCopy(boss.id, boss.counterSearch)}
+        >
+          {copiedId === boss.id ? '✓ Copied' : 'Copy'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function RaidsPage() {
   const [search, setSearch] = useState('');
@@ -35,6 +87,10 @@ export default function RaidsPage() {
       .filter(g => g.bosses.length > 0);
   }, [filtered]);
 
+  const currentBosses = useMemo(() =>
+    raidBosses.filter(b => currentRotation.bossIds.includes(b.id)),
+  []);
+
   async function copyString(id: string, str: string) {
     await navigator.clipboard.writeText(str);
     setCopiedId(id);
@@ -46,10 +102,9 @@ export default function RaidsPage() {
     <section className="raids-page" aria-label="Raid counter search strings">
       <div className="raids-intro">
         <h2>Raid Counters</h2>
-        <p>Find counters to raid bosses. Each search string filters your storage for Pokemon with the best super-effective moves against that boss.</p>
+        <p>Find counters to raid bosses. Each search string filters your storage for Pokemon with super-effective moves against that boss.</p>
       </div>
 
-      {/* Search box */}
       <div className="raids-search-row">
         <input
           className="raids-search-input"
@@ -60,7 +115,6 @@ export default function RaidsPage() {
         />
       </div>
 
-      {/* Type filter pills */}
       <div className="raids-type-filters" role="group" aria-label="Filter by type">
         <button
           className={`raids-type-pill${typeFilter === null ? ' active' : ''}`}
@@ -79,7 +133,22 @@ export default function RaidsPage() {
         ))}
       </div>
 
-      {/* Results */}
+      {/* Current month rotation — shown only when not filtering */}
+      {!search && !typeFilter && currentBosses.length > 0 && (
+        <div className="raids-group raids-group--current">
+          <h3>
+            <span className="raids-current-badge">Live</span>
+            {currentRotation.label}
+          </h3>
+          <div className="raids-grid">
+            {currentBosses.map(boss => (
+              <RaidCard key={boss.id} boss={boss} copiedId={copiedId} onCopy={copyString} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* All bosses by category */}
       {grouped.length === 0 ? (
         <p className="raids-empty">No raid bosses match your filters.</p>
       ) : (
@@ -88,43 +157,7 @@ export default function RaidsPage() {
             <h3>{category}</h3>
             <div className="raids-grid">
               {bosses.map(boss => (
-                <div key={boss.id} className="raid-card">
-                  <div className="raid-card-header">
-                    <img
-                      className="raid-card-sprite"
-                      src={spriteUrl(boss.dexNumber)}
-                      alt={boss.name}
-                      loading="lazy"
-                      width="64"
-                      height="64"
-                    />
-                    <div className="raid-card-info">
-                      <strong>{boss.name}</strong>
-                      <span className="raid-card-types">{boss.types.join(' / ')}</span>
-                    </div>
-                  </div>
-
-                  <div className="raid-card-weaknesses">
-                    <span className="raid-weakness-label">Weak to:</span>
-                    {boss.weaknesses.map(w => (
-                      <span key={w.type} className="raid-weakness-pill">
-                        {w.type} <span className="raid-weakness-mult">{w.multiplier}</span>
-                      </span>
-                    ))}
-                  </div>
-
-                  {boss.note && <p className="raid-card-note">{boss.note}</p>}
-
-                  <div className="raid-card-footer">
-                    <code className="raid-card-string">{boss.counterSearch}</code>
-                    <button
-                      className="raid-copy-btn"
-                      onClick={() => copyString(boss.id, boss.counterSearch)}
-                    >
-                      {copiedId === boss.id ? '✓ Copied' : 'Copy'}
-                    </button>
-                  </div>
-                </div>
+                <RaidCard key={boss.id} boss={boss} copiedId={copiedId} onCopy={copyString} />
               ))}
             </div>
           </div>
