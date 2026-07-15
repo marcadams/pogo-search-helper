@@ -751,7 +751,8 @@ function App() {
       )}
 
       <footer>
-        Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.
+        <p className="footer-disclaimer">Always review your Pokémon before transferring. This tool generates search strings but cannot guarantee results. The authors accept no responsibility for any Pokémon accidentally transferred, traded, or otherwise lost.</p>
+        <p>Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.</p>
       </footer>
 
       {/* ── Sticky copy bar ── */}

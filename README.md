@@ -73,6 +73,10 @@ To enable on a fork:
 
 ---
 
+## Disclaimer
+
+This tool generates search strings for Pokémon GO but cannot guarantee accuracy. **Always review your Pokémon before transferring.** The authors accept no responsibility for any Pokémon accidentally transferred, traded, or otherwise lost through use of this tool.
+
 ## License
 
 [CC BY-NC 4.0](LICENSE) — free to use, share, and modify with attribution. Commercial use is not permitted.
