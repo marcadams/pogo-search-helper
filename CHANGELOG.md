@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 
 ---
 
+## 2026-07-16
+
+### Added
+- **Type Chart tab** — interactive 18×18 type effectiveness matrix with heatmap coloring, tap-to-inspect detail view showing SE/NVE/immune matchups in both directions, color-coded legend
+- **Collapsible category sections** — each option group has a clickable header with chevron toggle, count badge showing total options, and pink "selected" indicator
+- **Collapse All / Expand All** buttons above the option groups
+- **Inline tutorial panel** — dismissable help explaining AND/OR/NOT with examples, persists in localStorage, re-openable via "How does this work?" link
+- **SEO meta tags** — Open Graph, Twitter Card (large image), canonical URL, keywords, Apple web app meta, social preview image (`og-image.png`)
+
+---
+
 ## 2026-07-15
 
 ### Added

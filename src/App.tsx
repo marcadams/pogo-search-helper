@@ -3,6 +3,7 @@ import { searchOptions, orOnlyGroups, type SearchOption } from './searchOptions'
 import { useSavedSearches } from './useSavedSearches';
 import RecipesPage from './RecipesPage';
 import RaidsPage from './RaidsPage';
+import TypesPage from './TypesPage';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -261,7 +262,7 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
-  const [view, setView] = useState<'builder' | 'recipes' | 'raids'>('builder');
+  const [view, setView] = useState<'builder' | 'recipes' | 'raids' | 'types'>('builder');
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
@@ -269,6 +270,8 @@ function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [saveName, setSaveName] = useState('');
   const [resultVisible, setResultVisible] = useState(true);
+  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(new Set());
+  const [helpDismissed, setHelpDismissed] = useState(() => localStorage.getItem('pogo-help-dismissed') === '1');
   const saveInputRef = useRef<HTMLInputElement>(null);
   const resultPanelRef = useRef<HTMLDivElement>(null);
   const { saves, save, remove } = useSavedSearches();
@@ -368,6 +371,15 @@ function App() {
     setSelected(current => current.filter(x => x.id !== id));
   }
 
+  function toggleGroup(category: string) {
+    setCollapsedGroups(current => {
+      const next = new Set(current);
+      if (next.has(category)) next.delete(category);
+      else next.add(category);
+      return next;
+    });
+  }
+
   function saveSearch() {
     if (!searchString) return;
     save(saveName, searchString, selected as import('./useSavedSearches').SavedSelection[]);
@@ -429,6 +441,12 @@ function App() {
           onClick={() => { setView('raids'); window.gtag?.('event', 'page_view', { page_title: 'Raids', page_location: window.location.href + '#raids' }); }}
         >
           Raids
+        </button>
+        <button
+          className={`tab-btn${view === 'types' ? ' active' : ''}`}
+          onClick={() => { setView('types'); window.gtag?.('event', 'page_view', { page_title: 'Types', page_location: window.location.href + '#types' }); }}
+        >
+          Types
         </button>
       </nav>
 
@@ -648,11 +666,69 @@ function App() {
           </div>
         </div>
 
+        {/* ── Inline help ── */}
+        {!helpDismissed ? (
+          <div className="help-panel">
+            <div className="help-panel-header">
+              <strong>How does this work?</strong>
+              <button className="help-dismiss" onClick={() => { setHelpDismissed(true); localStorage.setItem('pogo-help-dismissed', '1'); }} aria-label="Dismiss help">Got it</button>
+            </div>
+            <div className="help-panel-body">
+              <div className="help-item">
+                <span className="help-badge help-badge--and">AND</span>
+                <p>Must have this filter. Narrows results.<br /><code>shiny&amp;4*</code> = shiny AND perfect IV</p>
+              </div>
+              <div className="help-item">
+                <span className="help-badge help-badge--or">OR</span>
+                <p>Could be either. Broadens results.<br /><code>3*,4*</code> = 3-star OR 4-star</p>
+              </div>
+              <div className="help-item">
+                <span className="help-badge help-badge--not">NOT</span>
+                <p>Exclude matches. Removes from results.<br /><code>!shadow</code> = hide all shadows</p>
+              </div>
+            </div>
+            <p className="help-tip">Combine them: <code>4*,3*&amp;!shadow&amp;!purified</code> = high IV, not shadow, not purified</p>
+          </div>
+        ) : (
+          <button className="help-reopen" onClick={() => { setHelpDismissed(false); localStorage.removeItem('pogo-help-dismissed'); }}>
+            ? How does this work?
+          </button>
+        )}
+
         {/* ── Option groups ── */}
         <div className="option-groups">
-          {grouped.map(group => (
-            <section key={group.category}>
-              <h2>{group.category}</h2>
+          <div className="groups-toolbar">
+            <button
+              className="groups-toolbar-btn"
+              onClick={() => setCollapsedGroups(new Set(grouped.map(g => g.category)))}
+            >
+              Collapse all
+            </button>
+            <button
+              className="groups-toolbar-btn"
+              onClick={() => setCollapsedGroups(new Set())}
+            >
+              Expand all
+            </button>
+          </div>
+          {grouped.map(group => {
+            const isCollapsed = collapsedGroups.has(group.category);
+            const activeCount = group.options.filter(o => selected.some(s => s.id === o.id)).length;
+            return (
+            <section key={group.category} className={isCollapsed ? 'collapsed' : ''}>
+              <button
+                className="group-header"
+                onClick={() => toggleGroup(group.category)}
+                aria-expanded={!isCollapsed}
+              >
+                <h2>
+                  {group.category}
+                  <span className="group-count">{group.options.length}</span>
+                  {activeCount > 0 && <span className="group-active-count">{activeCount} selected</span>}
+                </h2>
+                <IconChevron open={!isCollapsed} />
+              </button>
+              {!isCollapsed && (
               <div className="option-grid">
                 {group.options.map(option => {
                   const active = selected.some(item => item.id === option.id);
@@ -763,14 +839,18 @@ function App() {
                   );
                 })}
               </div>
+              )}
             </section>
-          ))}
+            );
+          })}
         </div>
       </section>
       ) : view === 'recipes' ? (
       <RecipesPage />
-      ) : (
+      ) : view === 'raids' ? (
       <RaidsPage />
+      ) : (
+      <TypesPage />
       )}
 
       <footer>
