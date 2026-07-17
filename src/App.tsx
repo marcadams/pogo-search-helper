@@ -270,10 +270,17 @@ function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [saveName, setSaveName] = useState('');
   const [resultVisible, setResultVisible] = useState(true);
-  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(new Set());
+  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(() => {
+    // Start collapsed on mobile for faster navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return new Set(categoryOrder as unknown as string[]);
+    }
+    return new Set();
+  });
   const [helpDismissed, setHelpDismissed] = useState(() => localStorage.getItem('pogo-help-dismissed') === '1');
   const saveInputRef = useRef<HTMLInputElement>(null);
   const resultPanelRef = useRef<HTMLDivElement>(null);
+  const tabNavRef = useRef<HTMLDivElement>(null);
   const { saves, save, remove } = useSavedSearches();
 
   // Show sticky bar when the result panel scrolls out of view
@@ -404,6 +411,14 @@ function App() {
     window.setTimeout(() => setCopied(false), 1400);
   }
 
+  function switchTab(tab: typeof view) {
+    setView(tab);
+    requestAnimationFrame(() => {
+      tabNavRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    });
+    window.gtag?.('event', 'page_view', { page_title: tab.charAt(0).toUpperCase() + tab.slice(1), page_location: window.location.href + '#' + tab });
+  }
+
   async function stickyCopy() {
     if (!searchString) return;
     await navigator.clipboard.writeText(searchString);
@@ -416,35 +431,47 @@ function App() {
       <header className="hero">
         <HeroGraphic />
         <div className="hero-text">
-          <p className="eyebrow">Pokémon GO utility</p>
-          <h1>Search String<br />Helper</h1>
-          <p className="hero-sub">Build search strings visually, then copy them straight into Pokémon GO.</p>
+          <p className="eyebrow">Pokémon GO toolkit</p>
+          <h1>
+            <svg className="hero-mini-ball" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" fill="none" stroke="#1e293b" strokeWidth="2.5" />
+              <path d="M2 20 A18 18 0 0 1 38 20 Z" fill="#ef4444" />
+              <path d="M2 20 A18 18 0 0 0 38 20 Z" fill="#e2e8f0" />
+              <line x1="2" y1="20" x2="38" y2="20" stroke="#1e293b" strokeWidth="3" />
+              <circle cx="20" cy="20" r="5" fill="#1e293b" />
+              <circle cx="20" cy="20" r="3" fill="#f8fafc" />
+            </svg>
+            Trainer<br />Toolkit
+          </h1>
+          <p className="hero-sub">Search strings, raid counters, type chart, and cleanup recipes — all in one place.</p>
         </div>
       </header>
 
       {/* ── Tab navigation ── */}
+      {/* Scroll anchor — sits in normal flow above the sticky nav */}
+      <div ref={tabNavRef} style={{ height: 0, overflow: 'hidden' }} aria-hidden="true" />
       <nav className="tab-nav" aria-label="Main navigation">
         <button
           className={`tab-btn${view === 'builder' ? ' active' : ''}`}
-          onClick={() => { setView('builder'); window.gtag?.('event', 'page_view', { page_title: 'Builder', page_location: window.location.href + '#builder' }); }}
+          onClick={() => switchTab('builder')}
         >
           Builder
         </button>
         <button
           className={`tab-btn${view === 'recipes' ? ' active' : ''}`}
-          onClick={() => { setView('recipes'); window.gtag?.('event', 'page_view', { page_title: 'Recipes', page_location: window.location.href + '#recipes' }); }}
+          onClick={() => switchTab('recipes')}
         >
           Recipes
         </button>
         <button
           className={`tab-btn${view === 'raids' ? ' active' : ''}`}
-          onClick={() => { setView('raids'); window.gtag?.('event', 'page_view', { page_title: 'Raids', page_location: window.location.href + '#raids' }); }}
+          onClick={() => switchTab('raids')}
         >
           Raids
         </button>
         <button
           className={`tab-btn${view === 'types' ? ' active' : ''}`}
-          onClick={() => { setView('types'); window.gtag?.('event', 'page_view', { page_title: 'Types', page_location: window.location.href + '#types' }); }}
+          onClick={() => switchTab('types')}
         >
           Types
         </button>

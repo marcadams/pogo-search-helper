@@ -4,6 +4,18 @@ All notable changes to this project are documented here.
 
 ---
 
+## 2026-07-17
+
+### Added
+- **Sticky tab navigation** — tabs pin to the top of the viewport as you scroll
+- **Scroll-to-content on tab switch** — switching tabs instantly jumps to the content area (not the hero)
+- **Sections collapsed by default on mobile** — all categories start closed on screens under 768px for faster navigation
+- **Hero graphic hidden on mobile** — replaced with a compact inline Pokeball icon next to the title
+- **Rebranded** — "Search String Helper" → "Trainer Toolkit" with broader subtitle covering all features
+- **Page title updated** for SEO: "Pokémon GO Trainer Toolkit — Search Strings, Raid Counters & Type Chart"
+
+---
+
 ## 2026-07-16
 
 ### Added
