@@ -5,6 +5,7 @@ import App from '../App';
 describe('App', () => {
   beforeEach(() => {
     localStorage.clear();
+    window.location.hash = '';
   });
 
   it('renders the hero title', () => {

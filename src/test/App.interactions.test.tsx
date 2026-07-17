@@ -23,7 +23,7 @@ function addOptionByLabel(label: string, mode: 'Add' | 'AND' | 'OR' | 'NOT' = 'A
 }
 
 describe('Mutual exclusivity', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('disables AND for 3★ after 4★ is selected', () => {
     render(<App />);
@@ -93,7 +93,7 @@ describe('Mutual exclusivity', () => {
 });
 
 describe('Search string generation', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('generates correct string for a single filter', () => {
     render(<App />);
@@ -143,7 +143,7 @@ describe('Search string generation', () => {
 });
 
 describe('Exclude toggle on chips', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('toggles a chip to excluded state', () => {
     render(<App />);
@@ -168,7 +168,7 @@ describe('Exclude toggle on chips', () => {
 });
 
 describe('Sticky bar', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('does not render sticky bar when no search string', () => {
     render(<App />);
@@ -199,7 +199,7 @@ describe('Sticky bar', () => {
 });
 
 describe('Saved searches', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('saved search drawer opens when bookmark button is clicked', () => {
     render(<App />);
@@ -237,7 +237,7 @@ describe('Saved searches', () => {
 });
 
 describe('Joiner badge toggling', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('toggles joiner badge from AND to OR', () => {
     render(<App />);
@@ -262,7 +262,7 @@ describe('Joiner badge toggling', () => {
 });
 
 describe('Remove filter', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('removes a filter from the chips', () => {
     render(<App />);
@@ -285,7 +285,7 @@ describe('Remove filter', () => {
 });
 
 describe('Custom term input', () => {
-  beforeEach(() => localStorage.clear());
+  beforeEach(() => { localStorage.clear(); window.location.hash = ''; });
 
   it('adds a custom term with Add button', () => {
     render(<App />);
