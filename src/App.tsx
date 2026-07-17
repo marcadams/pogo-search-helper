@@ -5,6 +5,7 @@ import RecipesPage from './RecipesPage';
 import RaidsPage from './RaidsPage';
 import TypesPage from './TypesPage';
 import PvpPage from './PvpPage';
+import TipsPage from './TipsPage';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -263,7 +264,13 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
-  const [view, setView] = useState<'builder' | 'recipes' | 'raids' | 'types' | 'pvp'>('builder');
+  const validViews = ['builder', 'recipes', 'raids', 'types', 'pvp', 'tips'] as const;
+  type View = typeof validViews[number];
+
+  const [view, setView] = useState<View>(() => {
+    const hash = window.location.hash.replace('#', '') as View;
+    return validViews.includes(hash) ? hash : 'builder';
+  });
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
@@ -294,6 +301,17 @@ function App() {
     );
     obs.observe(el);
     return () => obs.disconnect();
+  }, []);
+
+  // Handle browser back/forward for hash navigation
+  useEffect(() => {
+    function onHashChange() {
+      const hash = window.location.hash.replace('#', '') as typeof view;
+      if (validViews.includes(hash)) setView(hash);
+      else if (!window.location.hash) setView('builder');
+    }
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   const searchString = useMemo(() => {
@@ -414,10 +432,11 @@ function App() {
 
   function switchTab(tab: typeof view) {
     setView(tab);
+    window.location.hash = tab === 'builder' ? '' : tab;
     requestAnimationFrame(() => {
       tabNavRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
     });
-    window.gtag?.('event', 'page_view', { page_title: tab.charAt(0).toUpperCase() + tab.slice(1), page_location: window.location.href + '#' + tab });
+    window.gtag?.('event', 'page_view', { page_title: tab.charAt(0).toUpperCase() + tab.slice(1), page_location: window.location.href });
   }
 
   async function stickyCopy() {
@@ -481,6 +500,12 @@ function App() {
           onClick={() => switchTab('pvp')}
         >
           PvP
+        </button>
+        <button
+          className={`tab-btn${view === 'tips' ? ' active' : ''}`}
+          onClick={() => switchTab('tips')}
+        >
+          Tips
         </button>
       </nav>
 
@@ -885,8 +910,10 @@ function App() {
       <RaidsPage />
       ) : view === 'types' ? (
       <TypesPage />
-      ) : (
+      ) : view === 'pvp' ? (
       <PvpPage />
+      ) : (
+      <TipsPage />
       )}
 
       <footer>

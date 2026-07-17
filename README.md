@@ -23,6 +23,7 @@ A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combi
 - **Sticky copy bar** - always-visible on desktop, slides up on mobile when you scroll past the result panel
 - **One-tap copy** to clipboard from anywhere
 - **Mobile-first** - responsive layout, compact touch targets, no wasted space
+- **Deep linking** - share direct links to any tab (`#tips`, `#raids`, `#pvp`, `#types`, `#recipes`)
 
 ## Tabs
 
@@ -50,6 +51,9 @@ Interactive 18x18 type effectiveness chart. Tap any type to see what it's strong
 
 ### PvP
 IV Rank Checker for capped leagues. Select a Pokemon, enter your IVs, and instantly see where they rank out of 4,096 possible combinations. Includes a detailed explainer on why low Attack IVs are optimal in Great/Ultra League.
+
+### Tips
+Catch rate multipliers reference, curated tips on catching, XP grinding, PvP mechanics, Stardust optimization, trading, and hidden game mechanics. All verified against current 2026 game state.
 
 ---
 
