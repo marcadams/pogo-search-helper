@@ -26,9 +26,9 @@ export default function PvpPage() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return pvpMons.slice(0, 20);
+    if (!search.trim()) return pvpMons;
     const q = search.toLowerCase();
-    return pvpMons.filter(m => m.name.toLowerCase().includes(q)).slice(0, 20);
+    return pvpMons.filter(m => m.name.toLowerCase().includes(q));
   }, [search]);
 
   // Close dropdown on outside click
