@@ -16,7 +16,7 @@ function addOptionByLabel(label: string, mode: 'Add' | 'AND' | 'OR' | 'NOT' = 'A
   } else if (mode === 'OR') {
     btn = within(card).getByRole('button', { name: new RegExp(`^Add ${label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} with OR$`, 'i') });
   } else {
-    // "Add" mode — use the exact aria-label which is "Add <label>"
+    // "Add" mode - use the exact aria-label which is "Add <label>"
     btn = within(card).getByRole('button', { name: new RegExp(`^Add ${label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') });
   }
   fireEvent.click(btn);
@@ -29,7 +29,7 @@ describe('Mutual exclusivity', () => {
     render(<App />);
     // Add 4* first
     addOptionByLabel('Perfect IV (4★)');
-    // Now find 3★ card — its AND button should be disabled
+    // Now find 3★ card - its AND button should be disabled
     const card = screen.getByLabelText('3★ (82–98% IV)');
     const andBtn = within(card).getByRole('button', { name: /AND/i });
     expect(andBtn).toBeDisabled();
@@ -116,7 +116,7 @@ describe('Search string generation', () => {
     render(<App />);
     // Use non-same-group items to test OR directly
     addOptionByLabel('Shiny');
-    // Now add Lucky with OR — these are not in the same group
+    // Now add Lucky with OR - these are not in the same group
     const card = screen.getByLabelText('Lucky');
     const orBtn = card.querySelector('.add-btn--or') as HTMLElement;
     fireEvent.click(orBtn);

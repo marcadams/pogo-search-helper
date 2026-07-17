@@ -28,7 +28,7 @@ export const currentRotation = {
   ],
 };
 
-// Sprite URL helper — uses PokeAPI official artwork
+// Sprite URL helper - uses PokeAPI official artwork
 export function spriteUrl(dexNumber: number): string {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dexNumber}.png`;
 }
@@ -230,7 +230,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Fighting', multiplier: '1.6x' },
     ],
     counterSearch: '@1fighting,@2fighting',
-    note: 'Only weak to Fighting. Machamp, Lucario, Conkeldurr. Chansey is extremely bulky — bring your best.',
+    note: 'Only weak to Fighting. Machamp, Lucario, Conkeldurr. Chansey is extremely bulky - bring your best.',
   },
   {
     id: 'dynamax-deino',
@@ -272,7 +272,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Grass', multiplier: '1.6x' },
     ],
     counterSearch: '@1electric,@2electric,@1grass,@2grass',
-    note: 'Same as Kyogre counters — Electric and Grass. Zekrom, Kartana, Roserade.',
+    note: 'Same as Kyogre counters - Electric and Grass. Zekrom, Kartana, Roserade.',
   },
 
   // ── Historical Tier 5 / Legendary Raids ─────────────────────────────────────
@@ -407,7 +407,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Water', multiplier: '1.6x' },
     ],
     counterSearch: '@1rock,@2rock,@1electric,@2electric,@1water,@2water',
-    note: 'Double weak to Rock. Same counters as Moltres — Rampardos, Rhyperior, Tyranitar.',
+    note: 'Double weak to Rock. Same counters as Moltres - Rampardos, Rhyperior, Tyranitar.',
   },
   {
     id: 'latios',
@@ -472,7 +472,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1ghost,@2ghost,@1dark,@2dark,@1bug,@2bug',
     featuredMonths: ['2026-05', '2026-01', '2024-09'],
-    note: 'Very bulky. Dark is best — Darkrai, Tyranitar, Hydreigon. Gengar for speed.',
+    note: 'Very bulky. Dark is best - Darkrai, Tyranitar, Hydreigon. Gengar for speed.',
   },
   {
     id: 'regigigas',
@@ -704,7 +704,7 @@ export const raidBosses: RaidBoss[] = [
       { type: 'Rock', multiplier: '1.6x' },
     ],
     counterSearch: '@1ice,@2ice,@1dragon,@2dragon,@1fairy,@2fairy,@1rock,@2rock',
-    note: 'Double weak to Ice. Same as regular Rayquaza — Mamoswine is king.',
+    note: 'Double weak to Ice. Same as regular Rayquaza - Mamoswine is king.',
   },
   {
     id: 'mega-garchomp',
@@ -837,7 +837,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1fire,@2fire',
     featuredMonths: ['2025-10'],
-    note: 'Double weak to Fire (only weakness). Same as Genesect — Reshiram, Chandelure, Blaziken.',
+    note: 'Double weak to Fire (only weakness). Same as Genesect - Reshiram, Chandelure, Blaziken.',
   },
   {
     id: 'mega-heracross',
@@ -974,7 +974,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1electric,@2electric,@1grass,@2grass',
     featuredMonths: ['2026-07'],
-    note: 'Very bulky. Electric and Grass — Zekrom, Kartana, Roserade.',
+    note: 'Very bulky. Electric and Grass - Zekrom, Kartana, Roserade.',
   },
   {
     id: 'uxie',
@@ -1164,7 +1164,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1fire,@2fire,@1flying,@2flying,@1rock,@2rock',
     featuredMonths: ['2026-01'],
-    note: 'Standard Bug weaknesses. Easy raid — any Fire attacker works.',
+    note: 'Standard Bug weaknesses. Easy raid - any Fire attacker works.',
   },
   {
     id: 'dynamax-beldum',
@@ -1258,7 +1258,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1fighting,@2fighting,@1fairy,@2fairy,@1bug,@2bug',
     featuredMonths: ['2026-02'],
-    note: 'Fighting is best. Lucario, Conkeldurr, Machamp. Very fragile — goes down fast.',
+    note: 'Fighting is best. Lucario, Conkeldurr, Machamp. Very fragile - goes down fast.',
   },
 
   // ── February 2026 Dynamax ──────────────────────────────────────────────────
@@ -1781,7 +1781,7 @@ export const raidBosses: RaidBoss[] = [
     ],
     counterSearch: '@1flying,@2flying,@1ghost,@2ghost,@1fairy,@2fairy',
     featuredMonths: ['2026-05'],
-    note: 'Ghost is best — immune to Fighting STAB. Gengar, Chandelure, Giratina.',
+    note: 'Ghost is best - immune to Fighting STAB. Gengar, Chandelure, Giratina.',
   },
 
   // ── May 2026 Dynamax (Max Mondays) ─────────────────────────────────────────

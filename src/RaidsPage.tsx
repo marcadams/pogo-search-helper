@@ -133,7 +133,7 @@ export default function RaidsPage() {
         ))}
       </div>
 
-      {/* Current month rotation — shown only when not filtering */}
+      {/* Current month rotation - shown only when not filtering */}
       {!search && !typeFilter && currentBosses.length > 0 && (
         <div className="raids-group raids-group--current">
           <h3>

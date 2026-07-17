@@ -1,4 +1,4 @@
-// Groups where members are mutually exclusive — AND between two members is
+// Groups where members are mutually exclusive - AND between two members is
 // always a logical contradiction. OR is still valid ("show me 3★ or 4★").
 // The UI disables the AND button when a group member is already selected.
 export const orOnlyGroups: Record<string, string> = {
@@ -14,8 +14,8 @@ export const orOnlyGroups: Record<string, string> = {
   'catch-source':    'A Pokémon has one catch origin',
   'region':          'A Pokémon is from one region',
   'year':            'A Pokémon was caught in one year',
-  'age-range':       'Age ranges overlap — AND would always return nothing',
-  'distance-range':  'Distance ranges overlap — AND would always return nothing',
+  'age-range':       'Age ranges overlap - AND would always return nothing',
+  'distance-range':  'Distance ranges overlap - AND would always return nothing',
 };
 
 export type SearchOption = {
@@ -46,7 +46,7 @@ export type SearchOption = {
 export const searchOptions: SearchOption[] = [
 
   // ── Appraisal ────────────────────────────────────────────────────────────────
-  { id: 'perfect',    label: 'Perfect IV (4★)',   token: '4*',       category: 'Appraisal', group: 'appraisal-star', description: '100% IV — all three stats are 15.' },
+  { id: 'perfect',    label: 'Perfect IV (4★)',   token: '4*',       category: 'Appraisal', group: 'appraisal-star', description: '100% IV - all three stats are 15.' },
   { id: 'three-star', label: '3★ (82–98% IV)',    token: '3*',       category: 'Appraisal', group: 'appraisal-star', description: 'Three-star appraisal (82–98% IV).' },
   { id: 'two-star',   label: '2★ (67–80% IV)',    token: '2*',       category: 'Appraisal', group: 'appraisal-star', description: 'Two-star appraisal (67–80% IV).' },
   { id: 'one-star',   label: '1★ (51–64% IV)',    token: '1*',       category: 'Appraisal', group: 'appraisal-star', description: 'One-star appraisal (51–64% IV).' },
@@ -143,10 +143,10 @@ export const searchOptions: SearchOption[] = [
   { id: 'mega3',       label: 'Mega Level 3',             token: 'mega3',       category: 'Evolution', group: 'mega-level', description: 'Pokémon at Mega Level 3 (max).' },
 
   // ── Battle ───────────────────────────────────────────────────────────────────
-  { id: 'cp-under-1500', label: 'CP ≤ 1500 (GL)',        token: 'cp-1500',   category: 'Battle', description: 'Pokémon at or below 1500 CP — Great League range.' },
-  { id: 'cp-under-2500', label: 'CP ≤ 2500 (UL)',        token: 'cp-2500',   category: 'Battle', description: 'Pokémon at or below 2500 CP — Ultra League range.' },
-  { id: 'cp-2500-plus',  label: 'CP 2500+ (ML)',          token: 'cp2500-',   category: 'Battle', description: 'Pokémon at or above 2500 CP — Master League range.' },
-  { id: 'cp-500-under',  label: 'CP ≤ 500 (Little Cup)', token: 'cp-500',    category: 'Battle', description: 'Pokémon at or below 500 CP — Little Cup range.' },
+  { id: 'cp-under-1500', label: 'CP ≤ 1500 (GL)',        token: 'cp-1500',   category: 'Battle', description: 'Pokémon at or below 1500 CP - Great League range.' },
+  { id: 'cp-under-2500', label: 'CP ≤ 2500 (UL)',        token: 'cp-2500',   category: 'Battle', description: 'Pokémon at or below 2500 CP - Ultra League range.' },
+  { id: 'cp-2500-plus',  label: 'CP 2500+ (ML)',          token: 'cp2500-',   category: 'Battle', description: 'Pokémon at or above 2500 CP - Master League range.' },
+  { id: 'cp-500-under',  label: 'CP ≤ 500 (Little Cup)', token: 'cp-500',    category: 'Battle', description: 'Pokémon at or below 500 CP - Little Cup range.' },
   { id: 'maxmove1plus',  label: 'Max Move ready',         token: 'maxmove1-', category: 'Battle', description: 'Dynamax/Gigantamax Pokémon (and Zacian/Zamazenta) eligible for Max Battles.' },
 
 
@@ -191,7 +191,7 @@ export const searchOptions: SearchOption[] = [
   { id: 'age0',    label: 'Caught Today',           token: 'age0',     category: 'Age & Year', group: 'age-range',      description: 'Pokémon caught within the last 24 hours.' },
   { id: 'age0-7',  label: 'Caught in Last 7 Days',  token: 'age0-7',   category: 'Age & Year', group: 'age-range',      description: 'Pokémon caught within the last 7 days.' },
   { id: 'age0-30', label: 'Caught in Last 30 Days', token: 'age0-30',  category: 'Age & Year', group: 'age-range',      description: 'Pokémon caught within the last 30 days.' },
-  { id: 'year2016',label: 'Caught in 2016',         token: 'year2016', category: 'Age & Year', group: 'year',           description: 'Pokémon caught during 2016 — the launch year.' },
+  { id: 'year2016',label: 'Caught in 2016',         token: 'year2016', category: 'Age & Year', group: 'year',           description: 'Pokémon caught during 2016 - the launch year.' },
   { id: 'year2017',label: 'Caught in 2017',         token: 'year2017', category: 'Age & Year', group: 'year',           description: 'Pokémon caught during 2017.' },
   { id: 'year2018',label: 'Caught in 2018',         token: 'year2018', category: 'Age & Year', group: 'year',           description: 'Pokémon caught during 2018.' },
   { id: 'year2019',label: 'Caught in 2019',         token: 'year2019', category: 'Age & Year', group: 'year',           description: 'Pokémon caught during 2019.' },

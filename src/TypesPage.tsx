@@ -42,7 +42,7 @@ export default function TypesPage() {
       {selected && (
         <div className="types-detail">
           <div className="types-detail-col">
-            <h3>{selected} attacks — super effective vs:</h3>
+            <h3>{selected} attacks - super effective vs:</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => getEffectiveness(selected, d) >= 2).map(d => (
                 <span key={d} className="types-tag types-tag--se">{d}</span>
@@ -53,7 +53,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} attacks — not very effective vs:</h3>
+            <h3>{selected} attacks - not very effective vs:</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => { const e = getEffectiveness(selected, d); return e > 0 && e < 1; }).map(d => (
                 <span key={d} className="types-tag types-tag--nve">{d}</span>
@@ -61,7 +61,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} attacks — no effect on:</h3>
+            <h3>{selected} attacks - no effect on:</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => getEffectiveness(selected, d) === 0).map(d => (
                 <span key={d} className="types-tag types-tag--immune">{d}</span>

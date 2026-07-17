@@ -14,15 +14,15 @@ A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combi
 
 ## Features
 
-- **130+ tokens** across 14 categories — Appraisal, Type, Move, Evolution, Catch Source, Region, Buddy, Size, and more
-- **Per-term AND / OR / NOT** — mix logic freely in a single string, with live token previews on every button
-- **Mutual exclusivity checks** — AND is blocked between star ratings, genders, sizes, regions, and other groups where it would always return nothing
-- **Raid Counters** — search strings for counters to every current raid boss, with type filters, weakness multipliers, and official artwork
-- **Cleanup Recipes** — 19 pre-made searches for bulk transfer, PvP hunting, shiny management, evolution sessions, and more
-- **Save & Load** — store your favorite searches in localStorage, quick-save from the sticky bar
-- **Sticky copy bar** — always-visible on desktop, slides up on mobile when you scroll past the result panel
+- **130+ tokens** across 14 categories - Appraisal, Type, Move, Evolution, Catch Source, Region, Buddy, Size, and more
+- **Per-term AND / OR / NOT** - mix logic freely in a single string, with live token previews on every button
+- **Mutual exclusivity checks** - AND is blocked between star ratings, genders, sizes, regions, and other groups where it would always return nothing
+- **Raid Counters** - search strings for counters to every current raid boss, with type filters, weakness multipliers, and official artwork
+- **Cleanup Recipes** - 19 pre-made searches for bulk transfer, PvP hunting, shiny management, evolution sessions, and more
+- **Save & Load** - store your favorite searches in localStorage, quick-save from the sticky bar
+- **Sticky copy bar** - always-visible on desktop, slides up on mobile when you scroll past the result panel
 - **One-tap copy** to clipboard from anywhere
-- **Mobile-first** — responsive layout, compact touch targets, no wasted space
+- **Mobile-first** - responsive layout, compact touch targets, no wasted space
 
 ## Tabs
 
@@ -43,12 +43,13 @@ Ready-to-use searches for common storage tasks:
 | Quick Checks | Hundos, nundos, legacy moves, mega-ready |
 
 ### Raids
-Counter search strings for current raid bosses. Each string filters your storage for Pokemon with super-effective fast AND charged moves against that boss. Includes all July 2025 bosses:
+Counter search strings for current raid bosses. Each string filters your storage for Pokemon with super-effective fast AND charged moves against that boss. Includes all July 2026 bosses plus historical data.
 
-- **Tier 5:** Articuno, Zapdos, Moltres, Kyogre, Solgaleo, Kyurem
-- **Shadow:** Shadow Palkia
-- **Mega:** Mega Lucario, Mega Sceptile, Mega Salamence, Mega Aggron
-- **Dynamax:** Chansey, Deino, Trubbish, Feebas
+### Types
+Interactive 18x18 type effectiveness chart. Tap any type to see what it's strong/weak against, or scroll the full heatmap matrix.
+
+### PvP
+IV Rank Checker for capped leagues. Select a Pokemon, enter your IVs, and instantly see where they rank out of 4,096 possible combinations. Includes a detailed explainer on why low Attack IVs are optimal in Great/Ultra League.
 
 ---
 
@@ -56,11 +57,13 @@ Counter search strings for current raid bosses. Each string filters your storage
 
 Key files:
 
-- [`src/searchOptions.ts`](src/searchOptions.ts) — all search tokens and group definitions
-- [`src/recipeData.ts`](src/recipeData.ts) — pre-made recipe searches
-- [`src/raidData.ts`](src/raidData.ts) — raid boss counters (update monthly)
+- [`src/searchOptions.ts`](src/searchOptions.ts) - all search tokens and group definitions
+- [`src/recipeData.ts`](src/recipeData.ts) - pre-made recipe searches
+- [`src/raidData.ts`](src/raidData.ts) - raid boss counters (update monthly)
+- [`src/pvpData.ts`](src/pvpData.ts) - Pokemon base stats for PvP IV ranking
+- [`src/typeChart.ts`](src/typeChart.ts) - type effectiveness data
 
-Adding or updating tokens/recipes/raids requires no UI code changes.
+Adding or updating tokens/recipes/raids/Pokemon requires no UI code changes.
 
 ```bash
 # Fork, clone, then:
@@ -101,6 +104,6 @@ This tool generates search strings for Pokémon GO but cannot guarantee accuracy
 
 ## License
 
-[CC BY-NC 4.0](LICENSE) — free to use, share, and modify with attribution. Commercial use is not permitted.
+[CC BY-NC 4.0](LICENSE) - free to use, share, and modify with attribution. Commercial use is not permitted.
 
 This project is an independent fan-made utility. Pokémon and Pokémon GO are trademarks of Nintendo, Creatures Inc., and GAME FREAK inc. Pokémon GO is developed and published by Scopely (acquired from Niantic in 2025). This project is not affiliated with, endorsed by, or connected to any of these companies.

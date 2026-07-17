@@ -7,7 +7,7 @@
   --pink-glow:   rgba(232, 121, 249, .18);
   --pink-subtle: rgba(232, 121, 249, .10);
 
-  /* Surface scale — dark charcoal, not black */
+  /* Surface scale - dark charcoal, not black */
   --bg:       #111118;
   --surface:  #1c1c27;
   --surface2: #252534;
@@ -1080,6 +1080,290 @@ h1 {
   border-color: var(--pink);
 }
 
+/* ── PvP IV Rank page ─────────────────────────────────────────────────────── */
+.pvp-page { margin-top: 20px; }
+.pvp-intro { margin-bottom: 16px; }
+.pvp-intro h2 { font-size: 1.4rem; color: var(--text); margin: 0 0 6px; }
+.pvp-intro p { color: var(--text-mid); font-size: .92rem; margin: 0; line-height: 1.4; }
+
+.pvp-selector { margin-bottom: 16px; position: relative; }
+
+.pvp-selected-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-mid);
+  border-radius: 12px;
+  background: var(--surface2);
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.pvp-selected-display:hover { border-color: var(--pink); }
+.pvp-selected-sprite {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--surface3);
+}
+.pvp-selected-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.pvp-selected-arrow {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+}
+
+.pvp-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  margin-top: 4px;
+  border: 1px solid var(--border-mid);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+  overflow: hidden;
+}
+.pvp-dropdown-search {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--border-muted);
+  background: var(--surface2);
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: .92rem;
+  outline: none;
+}
+.pvp-dropdown-search::placeholder { color: var(--text-dim); }
+.pvp-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.pvp-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .88rem;
+  font-weight: 500;
+  transition: background .12s;
+}
+.pvp-dropdown-item:hover { background: var(--surface2); }
+.pvp-dropdown-item img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: var(--surface3);
+}
+.pvp-dropdown-empty {
+  padding: 12px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: .85rem;
+}
+
+.pvp-result-mon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.pvp-result-sprite {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--surface2);
+  padding: 4px;
+}
+
+.pvp-leagues {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.pvp-league-btn {
+  flex: 1;
+  border: 1px solid var(--border-muted);
+  border-radius: 10px;
+  background: var(--surface2);
+  color: var(--text-dim);
+  padding: 9px 12px;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.pvp-league-btn:hover { border-color: var(--border-mid); color: var(--text-mid); }
+.pvp-league-btn.active { background: var(--pink); border-color: var(--pink); color: #1a0020; }
+
+.pvp-iv-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.pvp-iv-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pvp-iv-field label {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.pvp-iv-field input[type="number"] {
+  border: 1px solid var(--border-mid);
+  border-radius: 9px;
+  background: var(--surface2);
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  outline: none;
+}
+.pvp-iv-field input[type="number"]:focus { border-color: var(--pink); }
+.pvp-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface3);
+  outline: none;
+}
+.pvp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--pink);
+  cursor: pointer;
+}
+
+.pvp-result {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  margin-bottom: 16px;
+}
+.pvp-rank-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 12px;
+  border-radius: 12px;
+}
+.pvp-rank-number { font-size: 1.6rem; font-weight: 900; }
+.pvp-rank-total { font-size: .72rem; color: var(--text-dim); }
+.pvp-rank--elite { background: rgba(74, 222, 128, .15); color: #4ade80; }
+.pvp-rank--great { background: rgba(56, 189, 248, .15); color: #38bdf8; }
+.pvp-rank--good  { background: rgba(253, 186, 116, .12); color: #fdba74; }
+.pvp-rank--ok    { background: rgba(148, 163, 184, .1); color: var(--text-dim); }
+
+.pvp-result-details { flex: 1; display: grid; gap: 6px; }
+.pvp-result-row { display: flex; justify-content: space-between; align-items: center; }
+.pvp-result-label { font-size: .82rem; color: var(--text-dim); }
+.pvp-result-value { font-size: .92rem; font-weight: 700; color: var(--text); }
+
+.pvp-ideal {
+  padding: 14px 18px;
+  border: 1px solid var(--border-muted);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.pvp-ideal h3 { font-size: .85rem; color: var(--pink-bright); margin: 0 0 4px; }
+.pvp-ideal p { margin: 0; font-size: .9rem; color: var(--text); }
+
+.pvp-explainer {
+  margin-top: 20px;
+  border: 1px solid var(--border-muted);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.pvp-explainer summary {
+  padding: 14px 18px;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--pink-bright);
+  cursor: pointer;
+  transition: background .15s;
+  list-style: none;
+}
+.pvp-explainer summary::-webkit-details-marker { display: none; }
+.pvp-explainer summary::before {
+  content: '▸ ';
+  transition: transform .2s;
+}
+.pvp-explainer[open] summary::before {
+  content: '▾ ';
+}
+.pvp-explainer summary:hover { background: var(--surface2); }
+
+.pvp-explainer-body {
+  padding: 0 18px 18px;
+  color: var(--text-mid);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.pvp-explainer-body h4 {
+  color: var(--text);
+  font-size: .92rem;
+  margin: 18px 0 6px;
+}
+.pvp-explainer-body h4:first-child { margin-top: 0; }
+.pvp-explainer-body p { margin: 0 0 10px; }
+.pvp-explainer-body ul, .pvp-explainer-body ol {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.pvp-explainer-body li { margin-bottom: 4px; }
+.pvp-explainer-body code {
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: .82rem;
+  color: var(--pink-bright);
+}
+.pvp-formula {
+  display: block;
+  background: var(--surface2);
+  border: 1px solid var(--border-muted);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 8px 0 12px;
+  font-size: .88rem !important;
+  color: var(--text) !important;
+}
+
 /* ── Types page ───────────────────────────────────────────────────────────── */
 .types-page { margin-top: 20px; }
 .types-intro { margin-bottom: 16px; }
@@ -1318,7 +1602,7 @@ footer p:last-child { margin: 0; }
   .saves-load-btn { flex-direction: column; align-items: flex-start; gap: 3px; }
   .saves-item-preview { max-width: 100%; }
 
-  /* Keep card action buttons compact in a row — don't stretch to full width */
+  /* Keep card action buttons compact in a row - don't stretch to full width */
   .option-card-actions { flex-wrap: nowrap; }
   .add-btn {
     flex: 1;
@@ -1327,7 +1611,7 @@ footer p:last-child { margin: 0; }
     gap: 3px;
     font-size: .7rem;
   }
-  /* Hide the token preview on small screens — label alone is enough */
+  /* Hide the token preview on small screens - label alone is enough */
   .add-btn-preview { display: none; }
   .add-btn-divider { margin: 0; }
 }

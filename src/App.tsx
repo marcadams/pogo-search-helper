@@ -4,6 +4,7 @@ import { useSavedSearches } from './useSavedSearches';
 import RecipesPage from './RecipesPage';
 import RaidsPage from './RaidsPage';
 import TypesPage from './TypesPage';
+import PvpPage from './PvpPage';
 
 // ── Hero graphic ─────────────────────────────────────────────────────────────
 
@@ -42,7 +43,7 @@ function HeroGraphic() {
             <stop offset="0%" stopColor="#e2e8f0" />
             <stop offset="100%" stopColor="#94a3b8" />
           </linearGradient>
-          {/* Radar ring mask — fade out at edges */}
+          {/* Radar ring mask - fade out at edges */}
           <radialGradient id="radarFade" cx="50%" cy="50%" r="50%">
             <stop offset="55%" stopColor="white" stopOpacity="1" />
             <stop offset="100%" stopColor="white" stopOpacity="0" />
@@ -262,7 +263,7 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
-  const [view, setView] = useState<'builder' | 'recipes' | 'raids' | 'types'>('builder');
+  const [view, setView] = useState<'builder' | 'recipes' | 'raids' | 'types' | 'pvp'>('builder');
   const [selected, setSelected] = useState<Selection[]>([]);
   const [customTerm, setCustomTerm] = useState('');
   const [copied, setCopied] = useState(false);
@@ -443,12 +444,12 @@ function App() {
             </svg>
             Trainer<br />Toolkit
           </h1>
-          <p className="hero-sub">Search strings, raid counters, type chart, and cleanup recipes — all in one place.</p>
+          <p className="hero-sub">Search strings, raid counters, type chart, and cleanup recipes - all in one place.</p>
         </div>
       </header>
 
       {/* ── Tab navigation ── */}
-      {/* Scroll anchor — sits in normal flow above the sticky nav */}
+      {/* Scroll anchor - sits in normal flow above the sticky nav */}
       <div ref={tabNavRef} style={{ height: 0, overflow: 'hidden' }} aria-hidden="true" />
       <nav className="tab-nav" aria-label="Main navigation">
         <button
@@ -474,6 +475,12 @@ function App() {
           onClick={() => switchTab('types')}
         >
           Types
+        </button>
+        <button
+          className={`tab-btn${view === 'pvp' ? ' active' : ''}`}
+          onClick={() => switchTab('pvp')}
+        >
+          PvP
         </button>
       </nav>
 
@@ -568,7 +575,7 @@ function App() {
                     <button
                       className="chip-exclude"
                       onClick={() => toggleExcluded(item.id)}
-                      title={item.excluded ? 'Currently excluded — click to include' : 'Currently included — click to exclude'}
+                      title={item.excluded ? 'Currently excluded - click to include' : 'Currently included - click to exclude'}
                       aria-label={`${item.excluded ? 'Exclude' : 'Include'} ${item.label}`}
                     >
                       {item.excluded ? <IconExclude /> : null}
@@ -594,7 +601,7 @@ function App() {
                         className={`joiner-badge joiner-badge--${displayJoiner === '&' ? 'and' : 'or'}${lockedReason ? ' joiner-badge--locked' : ''}`}
                         onClick={() => !lockedReason && toggleJoiner(item.id)}
                         title={lockedReason ?? `Click to switch to ${isAnd ? 'OR' : 'AND'}`}
-                        aria-label={lockedReason ? `OR only: ${lockedReason}` : `Joiner: ${isAnd ? 'AND' : 'OR'} — click to toggle`}
+                        aria-label={lockedReason ? `OR only: ${lockedReason}` : `Joiner: ${isAnd ? 'AND' : 'OR'} - click to toggle`}
                         aria-disabled={!!lockedReason}
                       >
                         {displayJoiner === '&' ? <><code className="joiner-char">&amp;</code> AND</> : <><code className="joiner-char">,</code> OR</>}
@@ -876,8 +883,10 @@ function App() {
       <RecipesPage />
       ) : view === 'raids' ? (
       <RaidsPage />
-      ) : (
+      ) : view === 'types' ? (
       <TypesPage />
+      ) : (
+      <PvpPage />
       )}
 
       <footer>
