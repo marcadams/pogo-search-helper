@@ -780,7 +780,6 @@ h1 {
 }
 .card-help-btn:hover { color: var(--pink); border-color: var(--pink); }
 .card-help-tooltip {
-  display: none;
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
@@ -795,12 +794,7 @@ h1 {
   white-space: nowrap;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
 }
-.card-help-tooltip strong { color: var(--text); }
-.card-help-wrap:hover .card-help-tooltip,
-.card-help-wrap.show .card-help-tooltip,
-.card-help-btn:focus + .card-help-tooltip {
-  display: block;
-}
+.card-help-tooltip b { color: var(--text); }
 
 .added-label {
   font-size: .72rem;

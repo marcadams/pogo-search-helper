@@ -286,6 +286,7 @@ function App() {
     return new Set();
   });
   const [helpDismissed, setHelpDismissed] = useState(() => localStorage.getItem('pogo-help-dismissed') === '1');
+  const [activeHelpTip, setActiveHelpTip] = useState<string | null>(null);
   const saveInputRef = useRef<HTMLInputElement>(null);
   const resultPanelRef = useRef<HTMLDivElement>(null);
   const tabNavRef = useRef<HTMLDivElement>(null);
@@ -313,6 +314,22 @@ function App() {
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
+
+  // Close help tooltip when tapping outside
+  useEffect(() => {
+    if (!activeHelpTip) return;
+    function dismiss(e: Event) {
+      // Don't dismiss if tapping a help button (let onClick handle toggle)
+      if ((e.target as HTMLElement).closest('.card-help-btn')) return;
+      setActiveHelpTip(null);
+    }
+    document.addEventListener('touchstart', dismiss);
+    document.addEventListener('mousedown', dismiss);
+    return () => {
+      document.removeEventListener('touchstart', dismiss);
+      document.removeEventListener('mousedown', dismiss);
+    };
+  }, [activeHelpTip]);
 
   const searchString = useMemo(() => {
     if (selected.length === 0) return '';
@@ -800,17 +817,17 @@ function App() {
                       <span className="card-help-wrap">
                         <button className="card-help-btn" type="button" aria-label="Help"
                           onClick={(e) => {
-                            e.currentTarget.parentElement?.classList.toggle('show');
-                          }}
-                          onBlur={(e) => {
-                            e.currentTarget.parentElement?.classList.remove('show');
+                            e.stopPropagation();
+                            setActiveHelpTip(activeHelpTip === option.id ? null : option.id);
                           }}
                         >?</button>
-                        <span className="card-help-tooltip" role="tooltip">
-                          <b>AND</b> narrows — must also match<br />
-                          <b>OR</b> broadens — match either<br />
-                          <b>NOT</b> excludes — hide matches
-                        </span>
+                        {activeHelpTip === option.id && (
+                          <span className="card-help-tooltip" role="tooltip">
+                            <b>AND</b> narrows — must also match<br />
+                            <b>OR</b> broadens — match either<br />
+                            <b>NOT</b> excludes — hide matches
+                          </span>
+                        )}
                       </span>
                       <div className="option-card-body">
                         <strong>{option.label}</strong>
