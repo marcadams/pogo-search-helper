@@ -3,6 +3,12 @@
 All notable changes to this project are documented here.
 
 ---
+## 2026-07-19
+
+### Changed
+- **Tab bar scrolls horizontally on mobile** - swipeable when tabs overflow
+
+---
 
 ## 2026-07-17
 
