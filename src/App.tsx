@@ -797,6 +797,21 @@ function App() {
                       className={`option-card${active ? ' active' : ''}`}
                       aria-label={option.label}
                     >
+                      <span className="card-help-wrap">
+                        <button className="card-help-btn" type="button" aria-label="Help"
+                          onClick={(e) => {
+                            e.currentTarget.parentElement?.classList.toggle('show');
+                          }}
+                          onBlur={(e) => {
+                            e.currentTarget.parentElement?.classList.remove('show');
+                          }}
+                        >?</button>
+                        <span className="card-help-tooltip" role="tooltip">
+                          <b>AND</b> narrows — must also match<br />
+                          <b>OR</b> broadens — match either<br />
+                          <b>NOT</b> excludes — hide matches
+                        </span>
+                      </span>
                       <div className="option-card-body">
                         <strong>{option.label}</strong>
                         <code>{option.token}</code>

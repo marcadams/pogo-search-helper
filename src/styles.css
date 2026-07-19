@@ -486,44 +486,29 @@ h1 {
 }
 
 .add-btn-divider {
-  width: 1px;
-  height: 28px;
-  background: var(--border-muted);
-  border-radius: 1px;
-  flex-shrink: 0;
-  margin: 0 2px;
+  display: none;
 }
 
 .add-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  border-radius: 9px;
-  font-size: .78rem;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 8px;
+  font-size: .76rem;
   font-weight: 800;
-  letter-spacing: .05em;
-  padding: 6px 10px;
+  letter-spacing: .04em;
+  padding: 7px 6px;
   border: 1px solid transparent;
   transition: background .15s, border-color .15s, color .15s, transform .1s;
   line-height: 1;
+  white-space: nowrap;
 }
 .add-btn:not(:disabled):active { transform: scale(.95); }
 
-.add-btn-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-}
-.add-btn-label { font-size: .75rem; font-weight: 800; letter-spacing: .05em; line-height: 1; }
-.add-btn-preview {
-  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
-  font-size: .67rem;
-  font-weight: 400;
-  opacity: .6;
-  letter-spacing: 0;
-  line-height: 1;
-}
+.add-btn-inner { display: inline; }
+.add-btn-label { font-size: inherit; font-weight: inherit; }
+.add-btn-preview { display: none; }
 
 .add-btn--and {
   background: rgba(2, 132, 199, .08);
@@ -732,6 +717,7 @@ h1 {
 }
 
 .option-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -760,13 +746,61 @@ h1 {
 .option-card-body span { display: block; color: var(--text-dim); font-size: .79rem; line-height: 1.4; }
 
 .option-card-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto 1fr;
   gap: 5px;
+  align-items: center;
   margin-top: 10px;
 }
-.option-card-actions--active { justify-content: space-between; }
+.option-card-actions--active {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Card help tooltip */
+.card-help-wrap {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.card-help-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--border-mid);
+  background: var(--surface2);
+  color: var(--text-dim);
+  font-size: .62rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.card-help-btn:hover { color: var(--pink); border-color: var(--pink); }
+.card-help-tooltip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: .75rem;
+  line-height: 1.6;
+  color: var(--text-mid);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
+}
+.card-help-tooltip strong { color: var(--text); }
+.card-help-wrap:hover .card-help-tooltip,
+.card-help-wrap.show .card-help-tooltip,
+.card-help-btn:focus + .card-help-tooltip {
+  display: block;
+}
 
 .added-label {
   font-size: .72rem;
@@ -1758,16 +1792,9 @@ footer p:last-child { margin: 0; }
   .saves-load-btn { flex-direction: column; align-items: flex-start; gap: 3px; }
   .saves-item-preview { max-width: 100%; }
 
-  /* Keep card action buttons compact in a row - don't stretch to full width */
-  .option-card-actions { flex-wrap: nowrap; }
+  /* Buttons stay uniform on mobile */
   .add-btn {
-    flex: 1;
-    justify-content: center;
-    padding: 6px 4px;
-    gap: 3px;
     font-size: .7rem;
+    padding: 6px 4px;
   }
-  /* Hide the token preview on small screens - label alone is enough */
-  .add-btn-preview { display: none; }
-  .add-btn-divider { margin: 0; }
 }
