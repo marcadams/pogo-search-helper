@@ -108,22 +108,40 @@ h1 {
 }
 
 /* ── Tab navigation ──────────────────────────────────────────────────────── */
+.tab-nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin-top: 20px;
+}
 .tab-nav {
   display: flex;
   gap: 4px;
-  margin-top: 20px;
   padding: 4px;
   border-radius: 14px;
   background: var(--surface);
   border: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .tab-nav::-webkit-scrollbar { display: none; }
+
+/* Fade hint on right edge when scrollable */
+.tab-nav-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--bg));
+  border-radius: 0 14px 14px 0;
+  opacity: 1;
+  transition: opacity .2s;
+}
+.tab-nav-wrap.scrolled-end::after { opacity: 0; }
 .tab-btn {
   flex: 1;
   flex-shrink: 0;

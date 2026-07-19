@@ -487,6 +487,17 @@ function App() {
       {/* ── Tab navigation ── */}
       {/* Scroll anchor - sits in normal flow above the sticky nav */}
       <div ref={tabNavRef} style={{ height: 0, overflow: 'hidden' }} aria-hidden="true" />
+      <div className="tab-nav-wrap" ref={(el) => {
+        if (!el) return;
+        const nav = el.querySelector('.tab-nav');
+        if (!nav) return;
+        const checkScroll = () => {
+          const atEnd = nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4;
+          el.classList.toggle('scrolled-end', atEnd);
+        };
+        nav.addEventListener('scroll', checkScroll);
+        checkScroll();
+      }}>
       <nav className="tab-nav" aria-label="Main navigation">
         <button
           className={`tab-btn${view === 'builder' ? ' active' : ''}`}
@@ -525,6 +536,7 @@ function App() {
           Tips
         </button>
       </nav>
+      </div>
 
       {view === 'builder' ? (
       <section className="builder" aria-label="Search builder">
