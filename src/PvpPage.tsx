@@ -1,11 +1,12 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { pvpMons, type PvpMon } from './pvpData';
 import { rankIvs, getTopRank } from './pvpCalc';
+import { useI18n } from './i18n';
 
 const LEAGUES = [
-  { label: 'Great League', cap: 1500 },
-  { label: 'Ultra League', cap: 2500 },
-  { label: 'Master League', cap: 99999 },
+  { key: 'pvp.league.great', cap: 1500 },
+  { key: 'pvp.league.ultra', cap: 2500 },
+  { key: 'pvp.league.master', cap: 99999 },
 ] as const;
 
 function spriteUrl(name: string): string {
@@ -16,10 +17,11 @@ function spriteUrl(name: string): string {
 }
 
 export default function PvpPage() {
+  const { t } = useI18n();
   const [search, setSearch] = useState('');
   const [selectedMon, setSelectedMon] = useState<PvpMon>(pvpMons[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [league, setLeague] = useState<{ label: string; cap: number }>(LEAGUES[0]);
+  const [league, setLeague] = useState<{ key: string; cap: number }>(LEAGUES[0]);
   const [ivAtk, setIvAtk] = useState(0);
   const [ivDef, setIvDef] = useState(15);
   const [ivHp, setIvHp] = useState(15);
@@ -66,8 +68,8 @@ export default function PvpPage() {
   return (
     <section className="pvp-page" aria-label="PvP IV Rank Checker">
       <div className="pvp-intro">
-        <h2>PvP IV Rank Checker</h2>
-        <p>In capped leagues, lower Attack + higher Defense/HP = more total stats. Enter your IVs to see the rank out of 4,096 combinations.</p>
+        <h2>{t('pvp.title')}</h2>
+        <p>{t('pvp.sub')}</p>
       </div>
 
       {/* Pokemon selector - searchable dropdown */}
@@ -109,7 +111,7 @@ export default function PvpPage() {
                 </li>
               ))}
               {filtered.length === 0 && (
-                <li className="pvp-dropdown-empty">No Pokemon found</li>
+                <li className="pvp-dropdown-empty">{t('pvp.noResults')}</li>
               )}
             </ul>
           </div>
@@ -120,11 +122,11 @@ export default function PvpPage() {
       <div className="pvp-leagues">
         {LEAGUES.map(l => (
           <button
-            key={l.label}
-            className={`pvp-league-btn${league.label === l.label ? ' active' : ''}`}
+            key={l.key}
+            className={`pvp-league-btn${league.key === l.key ? ' active' : ''}`}
             onClick={() => setLeague(l)}
           >
-            {l.label}
+            {t(l.key)}
           </button>
         ))}
       </div>
@@ -132,7 +134,7 @@ export default function PvpPage() {
       {/* IV inputs */}
       <div className="pvp-iv-inputs">
         <div className="pvp-iv-field">
-          <label>Attack IV</label>
+          <label>{t('pvp.iv.attack')}</label>
           <input
             type="number" min={0} max={15}
             value={ivAtk}
@@ -146,7 +148,7 @@ export default function PvpPage() {
           />
         </div>
         <div className="pvp-iv-field">
-          <label>Defense IV</label>
+          <label>{t('pvp.iv.defense')}</label>
           <input
             type="number" min={0} max={15}
             value={ivDef}
@@ -160,7 +162,7 @@ export default function PvpPage() {
           />
         </div>
         <div className="pvp-iv-field">
-          <label>HP IV</label>
+          <label>{t('pvp.iv.hp')}</label>
           <input
             type="number" min={0} max={15}
             value={ivHp}
@@ -192,19 +194,19 @@ export default function PvpPage() {
         </div>
         <div className="pvp-result-details">
           <div className="pvp-result-row">
-            <span className="pvp-result-label">Stat Product</span>
+            <span className="pvp-result-label">{t('pvp.statProduct')}</span>
             <span className="pvp-result-value">{result.percentile.toFixed(2)}%</span>
           </div>
           <div className="pvp-result-row">
-            <span className="pvp-result-label">Best Level</span>
+            <span className="pvp-result-label">{t('pvp.bestLevel')}</span>
             <span className="pvp-result-value">{result.level}</span>
           </div>
           <div className="pvp-result-row">
-            <span className="pvp-result-label">CP at best level</span>
+            <span className="pvp-result-label">{t('pvp.cpAtLevel')}</span>
             <span className="pvp-result-value">{result.cp}</span>
           </div>
           <div className="pvp-result-row">
-            <span className="pvp-result-label">Stat Product (raw)</span>
+            <span className="pvp-result-label">{t('pvp.statProductRaw')}</span>
             <span className="pvp-result-value">{Math.round(result.statProduct).toLocaleString()}</span>
           </div>
         </div>
@@ -212,7 +214,7 @@ export default function PvpPage() {
 
       {/* Ideal comparison */}
       <div className="pvp-ideal">
-        <h3>Rank #1 for {selectedMon.name} in {league.label}:</h3>
+        <h3>{t('pvp.ideal')} {selectedMon.name} {t('pvp.in')} {t(league.key)}:</h3>
         <p>
           <strong>{topRank.atk}/{topRank.def}/{topRank.hp}</strong> at Level {topRank.level} - CP {topRank.cp}
         </p>
@@ -220,7 +222,7 @@ export default function PvpPage() {
 
       {/* Explainer */}
       <details className="pvp-explainer">
-        <summary>Why are low Attack IVs better for PvP?</summary>
+        <summary>{t('pvp.whyTitle')}</summary>
         <div className="pvp-explainer-body">
           <h4>The CP Formula</h4>
           <p>Pokémon GO calculates CP using this formula:</p>
@@ -237,7 +239,7 @@ export default function PvpPage() {
             <li>Lower max level = less total stats overall</li>
           </ul>
 
-          <h4>Stat Product</h4>
+          <h4>{t('pvp.statProduct')}</h4>
           <p>What actually matters in battle is your <strong>total stat product</strong>:</p>
           <code className="pvp-formula">
             Stat Product = Attack × Defense × HP
@@ -252,7 +254,7 @@ export default function PvpPage() {
             <li>Total stat product ends up higher than a 15/15/15 at lower level</li>
           </ul>
 
-          <h4>Example: {selectedMon.name} in {league.label}</h4>
+          <h4>Example: {selectedMon.name} in {t(league.key)}</h4>
           <p>
             A <strong>15/15/15</strong> hits the {league.cap} CP cap at a lower level, while a <strong>{topRank.atk}/{topRank.def}/{topRank.hp}</strong> can reach Level {topRank.level} and squeeze out more total stats under the same cap.
           </p>

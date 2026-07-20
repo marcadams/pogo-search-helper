@@ -1,10 +1,11 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import RaidsPage from '../RaidsPage';
+import { I18nProvider } from '../i18n';
 
 describe('RaidsPage', () => {
   beforeEach(() => {
-    render(<RaidsPage />);
+    render(<I18nProvider><RaidsPage /></I18nProvider>);
   });
 
   it('renders the page title', () => {

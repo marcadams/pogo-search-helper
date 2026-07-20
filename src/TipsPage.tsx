@@ -1,3 +1,5 @@
+import { useI18n } from './i18n';
+
 const tips = [
   {
     category: 'Catching',
@@ -75,22 +77,23 @@ const tips = [
 ];
 
 export default function TipsPage() {
+  const { t } = useI18n();
   return (
     <section className="tips-page" aria-label="Tips and tricks">
       <div className="tips-intro">
-        <h2>Tips & Tricks</h2>
-        <p>Useful knowledge that makes you a better trainer. From hidden mechanics to resource optimization.</p>
+        <h2>{t('tips.title')}</h2>
+        <p>{t('tips.sub')}</p>
       </div>
 
       {/* Catch multipliers reference */}
       <div className="catch-ref">
-        <h3 className="catch-ref-title">Catch Rate Multipliers</h3>
-        <p className="catch-ref-sub">Every throw is a roll. Stack these multipliers to maximize your odds.</p>
+        <h3 className="catch-ref-title">{t('tips.catchRef.title')}</h3>
+        <p className="catch-ref-sub">{t('tips.catchRef.sub')}</p>
 
         <div className="catch-ref-section">
           <h4>
             <svg viewBox="0 0 24 24" className="catch-ref-icon"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M2 12 A10 10 0 0 1 22 12 Z" fill="#ef4444" /><path d="M2 12 A10 10 0 0 0 22 12 Z" fill="#e2e8f0" /><line x1="2" y1="12" x2="22" y2="12" stroke="#333" strokeWidth="1.5" /><circle cx="12" cy="12" r="2.5" fill="#333" /></svg>
-            Poke Balls
+            {t('tips.catchRef.balls')}
           </h4>
           <div className="catch-ref-grid">
             <div className="catch-ref-item">
@@ -114,7 +117,7 @@ export default function TipsPage() {
         <div className="catch-ref-section">
           <h4>
             <svg viewBox="0 0 24 24" className="catch-ref-icon"><ellipse cx="12" cy="14" rx="8" ry="7" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M8 8 Q12 2 16 8" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="12" cy="14" r="2" fill="currentColor" /></svg>
-            Berries
+            {t('tips.catchRef.berries')}
           </h4>
           <div className="catch-ref-grid">
             <div className="catch-ref-item">
@@ -148,7 +151,7 @@ export default function TipsPage() {
         <div className="catch-ref-section">
           <h4>
             <svg viewBox="0 0 24 24" className="catch-ref-icon"><path d="M12 3 C8 3 4 7 4 12 C4 18 12 22 12 22 C12 22 20 18 20 12 C20 7 16 3 12 3Z" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="12" cy="11" r="3" fill="currentColor" opacity=".5" /></svg>
-            Throw Bonuses
+            {t('tips.catchRef.throws')}
           </h4>
           <div className="catch-ref-grid">
             <div className="catch-ref-item">
@@ -175,7 +178,7 @@ export default function TipsPage() {
         </div>
 
         <p className="catch-ref-example">
-          <strong>Best case:</strong> Ultra Ball (2.0×) + Golden Razz (2.5×) + Excellent (2.0×) + Curve (1.7×) = <strong>17× base catch rate</strong>
+          <strong>{t('tips.catchRef.bestCase')}</strong> Ultra Ball (2.0×) + Golden Razz (2.5×) + Excellent (2.0×) + Curve (1.7×) = <strong>{t('tips.catchRef.bestResult')}</strong>
         </p>
       </div>
 

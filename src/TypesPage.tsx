@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TYPES, getEffectiveness, type PokemonType } from './typeChart';
+import { useI18n } from './i18n';
 
 function effClass(val: number): string {
   if (val >= 2) return 'eff-se';
@@ -16,13 +17,14 @@ function effLabel(val: number): string {
 }
 
 export default function TypesPage() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState<PokemonType | null>(null);
 
   return (
     <section className="types-page" aria-label="Type effectiveness chart">
       <div className="types-intro">
-        <h2>Type Chart</h2>
-        <p>Tap a type to see what it's strong and weak against. Scroll right on the full matrix for all matchups.</p>
+        <h2>{t('types.title')}</h2>
+        <p>{t('types.sub')}</p>
       </div>
 
       {/* Type selector pills */}
@@ -42,7 +44,7 @@ export default function TypesPage() {
       {selected && (
         <div className="types-detail">
           <div className="types-detail-col">
-            <h3>{selected} attacks - super effective vs:</h3>
+            <h3>{selected} {t('types.attacks.se')}</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => getEffectiveness(selected, d) >= 2).map(d => (
                 <span key={d} className="types-tag types-tag--se">{d}</span>
@@ -53,7 +55,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} attacks - not very effective vs:</h3>
+            <h3>{selected} {t('types.attacks.nve')}</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => { const e = getEffectiveness(selected, d); return e > 0 && e < 1; }).map(d => (
                 <span key={d} className="types-tag types-tag--nve">{d}</span>
@@ -61,7 +63,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} attacks - no effect on:</h3>
+            <h3>{selected} {t('types.attacks.none')}</h3>
             <div className="types-detail-list">
               {TYPES.filter(d => getEffectiveness(selected, d) === 0).map(d => (
                 <span key={d} className="types-tag types-tag--immune">{d}</span>
@@ -72,7 +74,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} is weak to (takes SE damage from):</h3>
+            <h3>{selected} {t('types.weakTo')}</h3>
             <div className="types-detail-list">
               {TYPES.filter(a => getEffectiveness(a, selected) >= 2).map(a => (
                 <span key={a} className="types-tag types-tag--se">{a}</span>
@@ -80,7 +82,7 @@ export default function TypesPage() {
             </div>
           </div>
           <div className="types-detail-col">
-            <h3>{selected} resists (takes reduced damage from):</h3>
+            <h3>{selected} {t('types.resists')}</h3>
             <div className="types-detail-list">
               {TYPES.filter(a => { const e = getEffectiveness(a, selected); return e > 0 && e < 1; }).map(a => (
                 <span key={a} className="types-tag types-tag--nve">{a}</span>
@@ -92,16 +94,16 @@ export default function TypesPage() {
 
       {/* Full matrix */}
       <div className="types-legend">
-        <span className="types-legend-item"><span className="types-legend-swatch eff-se"></span> Super effective (1.6×)</span>
-        <span className="types-legend-item"><span className="types-legend-swatch eff-nve"></span> Not very effective (0.625×)</span>
-        <span className="types-legend-item"><span className="types-legend-swatch eff-immune"></span> Immune / No effect (0.391×)</span>
-        <span className="types-legend-item"><span className="types-legend-swatch eff-neutral"></span> Neutral (1×)</span>
+        <span className="types-legend-item"><span className="types-legend-swatch eff-se"></span> {t('types.legend.se')}</span>
+        <span className="types-legend-item"><span className="types-legend-swatch eff-nve"></span> {t('types.legend.nve')}</span>
+        <span className="types-legend-item"><span className="types-legend-swatch eff-immune"></span> {t('types.legend.immune')}</span>
+        <span className="types-legend-item"><span className="types-legend-swatch eff-neutral"></span> {t('types.legend.neutral')}</span>
       </div>
       <div className="types-matrix-wrap">
         <table className="types-matrix">
           <thead>
             <tr>
-              <th className="types-matrix-corner">Atk ↓ / Def →</th>
+              <th className="types-matrix-corner">{t('types.matrixHeader')}</th>
               {TYPES.map(t => (
                 <th key={t} className="types-matrix-th">{t.slice(0, 3)}</th>
               ))}

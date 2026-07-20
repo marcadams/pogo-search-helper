@@ -558,8 +558,8 @@ function App() {
         <div className="result-panel" ref={resultPanelRef}>
           <div className="result-header">
             <div className="result-string-wrap">
-              <span className="field-label">Generated search</span>
-              <code>{searchString || 'Choose one or more filters below'}</code>
+              <span className="field-label">{t('builder.generated')}</span>
+              <code>{searchString || t('builder.placeholder')}</code>
             </div>
             <div className="result-actions">
               <button
@@ -574,7 +574,7 @@ function App() {
                 <IconChevron open={drawerOpen} />
               </button>
               <button className="primary" onClick={copySearch} disabled={!searchString}>
-                {copied ? '✓ Copied' : 'Copy'}
+                {copied ? t('builder.copied') : t('builder.copy')}
               </button>
             </div>
           </div>
@@ -590,7 +590,7 @@ function App() {
                   value={saveName}
                   onChange={e => setSaveName(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && saveSearch()}
-                  placeholder="Name this search…"
+                  placeholder={t('saved.namePlaceholder')}
                   disabled={!searchString}
                   aria-label="Name for saved search"
                 />
@@ -598,15 +598,15 @@ function App() {
                   className="saves-save-btn"
                   onClick={saveSearch}
                   disabled={!searchString}
-                  title={searchString ? 'Save current search' : 'Build a search first'}
+                  title={searchString ? t('saved.saveSearch') : ''}
                 >
-                  Save
+                  {t('btn.save')}
                 </button>
               </div>
 
               {/* Saved list */}
               {saves.length === 0 ? (
-                <p className="saves-empty">No saved searches yet.</p>
+                <p className="saves-empty">{t('saved.empty')}</p>
               ) : (
                 <ul className="saves-list" role="list">
                   {saves.map(s => (
@@ -681,7 +681,7 @@ function App() {
               ))}
 
               <button className="text-button" onClick={() => setSelected([])}>
-                Clear all
+                {t('builder.clearAll')}
               </button>
             </div>
           )}
@@ -693,7 +693,7 @@ function App() {
             value={customTerm}
             onChange={e => setCustomTerm(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && addCustom('&')}
-            placeholder="Add a custom term, e.g. cp1500"
+            placeholder={t('builder.custom')}
           />
           <div className="add-buttons">
             {selected.length === 0 ? (
@@ -772,8 +772,8 @@ function App() {
         {!helpDismissed ? (
           <div className="help-panel">
             <div className="help-panel-header">
-              <strong>How does this work?</strong>
-              <button className="help-dismiss" onClick={() => { setHelpDismissed(true); localStorage.setItem('pogo-help-dismissed', '1'); }} aria-label="Dismiss help">Got it</button>
+              <strong>{t('help.title')}</strong>
+              <button className="help-dismiss" onClick={() => { setHelpDismissed(true); localStorage.setItem('pogo-help-dismissed', '1'); }} aria-label="Dismiss help">{t('help.dismiss')}</button>
             </div>
             <div className="help-panel-body">
               <div className="help-item">
@@ -793,7 +793,7 @@ function App() {
           </div>
         ) : (
           <button className="help-reopen" onClick={() => { setHelpDismissed(false); localStorage.removeItem('pogo-help-dismissed'); }}>
-            ? How does this work?
+            {t('help.reopen')}
           </button>
         )}
 
@@ -804,13 +804,13 @@ function App() {
               className="groups-toolbar-btn"
               onClick={() => setCollapsedGroups(new Set(grouped.map(g => g.category)))}
             >
-              Collapse all
+              {t('builder.collapseAll')}
             </button>
             <button
               className="groups-toolbar-btn"
               onClick={() => setCollapsedGroups(new Set())}
             >
-              Expand all
+              {t('builder.expandAll')}
             </button>
           </div>
           {grouped.map(group => {
@@ -862,7 +862,7 @@ function App() {
                       </div>
                       {active ? (
                         <div className="option-card-actions option-card-actions--active">
-                          <span className="added-label">Added</span>
+                          <span className="added-label">{t('builder.added')}</span>
                           <button
                             className="remove-option-btn"
                             onClick={() => removeItem(selected.find(s => s.id === option.id)!.id)}
@@ -975,8 +975,8 @@ function App() {
       )}
 
       <footer>
-        <p className="footer-disclaimer">Always review your Pokémon before transferring. This tool generates search strings but cannot guarantee results. The authors accept no responsibility for any Pokémon accidentally transferred, traded, or otherwise lost.</p>
-        <p>Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.</p>
+        <p className="footer-disclaimer">{t('footer.disclaimer')}</p>
+        <p>{t('footer.trademark')}</p>
       </footer>
 
       {/* ── Sticky copy bar ── */}

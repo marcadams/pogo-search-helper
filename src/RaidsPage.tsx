@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { raidBosses, currentRotation, spriteUrl, type RaidBoss } from './raidData';
+import { useI18n } from './i18n';
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
@@ -17,6 +18,7 @@ const ALL_TYPES = [
 const CATEGORIES: RaidBoss['category'][] = ['Legendary', 'Mythical', 'Mega', 'Dynamax', 'Regular'];
 
 function RaidCard({ boss, copiedId, onCopy }: { boss: RaidBoss; copiedId: string | null; onCopy: (id: string, str: string) => void }) {
+  const { t } = useI18n();
   return (
     <div className="raid-card">
       <div className="raid-card-header">
@@ -32,13 +34,13 @@ function RaidCard({ boss, copiedId, onCopy }: { boss: RaidBoss; copiedId: string
           <strong>{boss.name}</strong>
           <span className="raid-card-types">{boss.types.join(' / ')}</span>
           {boss.featuredMonths && boss.featuredMonths.length > 0 && (
-            <span className="raid-card-featured">Last: {formatMonth(boss.featuredMonths[0])}</span>
+            <span className="raid-card-featured">{t('raids.last')} {formatMonth(boss.featuredMonths[0])}</span>
           )}
         </div>
       </div>
 
       <div className="raid-card-weaknesses">
-        <span className="raid-weakness-label">Weak to:</span>
+        <span className="raid-weakness-label">{t('raids.weakTo')}</span>
         {boss.weaknesses.map(w => (
           <span key={w.type} className="raid-weakness-pill">
             {w.type} <span className="raid-weakness-mult">{w.multiplier}</span>
@@ -54,7 +56,7 @@ function RaidCard({ boss, copiedId, onCopy }: { boss: RaidBoss; copiedId: string
           className="raid-copy-btn"
           onClick={() => onCopy(boss.id, boss.counterSearch)}
         >
-          {copiedId === boss.id ? '✓ Copied' : 'Copy'}
+          {copiedId === boss.id ? t('builder.copied') : t('btn.copy')}
         </button>
       </div>
     </div>
@@ -62,6 +64,7 @@ function RaidCard({ boss, copiedId, onCopy }: { boss: RaidBoss; copiedId: string
 }
 
 export default function RaidsPage() {
+  const { t } = useI18n();
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -101,8 +104,8 @@ export default function RaidsPage() {
   return (
     <section className="raids-page" aria-label="Raid counter search strings">
       <div className="raids-intro">
-        <h2>Raid Counters</h2>
-        <p>Find counters to raid bosses. Each search string filters your storage for Pokemon with super-effective moves against that boss.</p>
+        <h2>{t('raids.title')}</h2>
+        <p>{t('raids.sub')}</p>
       </div>
 
       <div className="raids-search-row">
@@ -110,7 +113,7 @@ export default function RaidsPage() {
           className="raids-search-input"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder="Search for a raid boss..."
+          placeholder={t('raids.search')}
           aria-label="Search raid bosses"
         />
       </div>
@@ -120,7 +123,7 @@ export default function RaidsPage() {
           className={`raids-type-pill${typeFilter === null ? ' active' : ''}`}
           onClick={() => setTypeFilter(null)}
         >
-          All
+          {t('raids.all')}
         </button>
         {ALL_TYPES.map(t => (
           <button
@@ -137,7 +140,7 @@ export default function RaidsPage() {
       {!search && !typeFilter && currentBosses.length > 0 && (
         <div className="raids-group raids-group--current">
           <h3>
-            <span className="raids-current-badge">Live</span>
+            <span className="raids-current-badge">{t('raids.live')}</span>
             {currentRotation.label}
           </h3>
           <div className="raids-grid">
@@ -150,7 +153,7 @@ export default function RaidsPage() {
 
       {/* All bosses by category */}
       {grouped.length === 0 ? (
-        <p className="raids-empty">No raid bosses match your filters.</p>
+        <p className="raids-empty">{t('raids.empty')}</p>
       ) : (
         grouped.map(({ category, bosses }) => (
           <div key={category} className="raids-group">
