@@ -25,10 +25,11 @@ describe('raidData', () => {
     }
   });
 
-  it('counter search strings reference move types with @1 and @2 syntax', () => {
+  it('counter search strings reference move types with @1, @2, and @3 syntax', () => {
     for (const boss of raidBosses) {
       expect(boss.counterSearch).toMatch(/@1\w+/);
       expect(boss.counterSearch).toMatch(/@2\w+/);
+      expect(boss.counterSearch).toMatch(/@3\w+/);
     }
   });
 
