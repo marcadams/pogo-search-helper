@@ -1,6 +1,7 @@
 import { useMemo, useState, useRef, useEffect } from 'react';
 import { searchOptions, orOnlyGroups, type SearchOption } from './searchOptions';
 import { useSavedSearches } from './useSavedSearches';
+import { useI18n, LANGUAGES } from './i18n';
 import RecipesPage from './RecipesPage';
 import RaidsPage from './RaidsPage';
 import TypesPage from './TypesPage';
@@ -264,6 +265,7 @@ function IconChevron({ open }: { open: boolean }) {
 // ── App ──────────────────────────────────────────────────────────────────────
 
 function App() {
+  const { t, lang, setLang } = useI18n();
   const validViews = ['builder', 'recipes', 'raids', 'types', 'pvp', 'tips'] as const;
   type View = typeof validViews[number];
 
@@ -468,7 +470,19 @@ function App() {
       <header className="hero">
         <HeroGraphic />
         <div className="hero-text">
-          <p className="eyebrow">Pokémon GO toolkit</p>
+          <div className="hero-top-row">
+            <p className="eyebrow">{t('hero.eyebrow')}</p>
+            <select
+              className="lang-picker"
+              value={lang}
+              onChange={e => setLang(e.target.value as typeof lang)}
+              aria-label="Language"
+            >
+              {LANGUAGES.map(l => (
+                <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
+              ))}
+            </select>
+          </div>
           <h1>
             <svg className="hero-mini-ball" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="20" cy="20" r="18" fill="none" stroke="#1e293b" strokeWidth="2.5" />
@@ -478,9 +492,9 @@ function App() {
               <circle cx="20" cy="20" r="5" fill="#1e293b" />
               <circle cx="20" cy="20" r="3" fill="#f8fafc" />
             </svg>
-            Trainer<br />Toolkit
+            {t('hero.title').split('\n').map((line, i) => <span key={i}>{line}<br /></span>)}
           </h1>
-          <p className="hero-sub">Search strings, raid counters, type chart, and cleanup recipes - all in one place.</p>
+          <p className="hero-sub">{t('hero.sub')}</p>
         </div>
       </header>
 
@@ -503,37 +517,37 @@ function App() {
           className={`tab-btn${view === 'builder' ? ' active' : ''}`}
           onClick={() => switchTab('builder')}
         >
-          Builder
+          {t('nav.builder')}
         </button>
         <button
           className={`tab-btn${view === 'recipes' ? ' active' : ''}`}
           onClick={() => switchTab('recipes')}
         >
-          Recipes
+          {t('nav.recipes')}
         </button>
         <button
           className={`tab-btn${view === 'raids' ? ' active' : ''}`}
           onClick={() => switchTab('raids')}
         >
-          Raids
+          {t('nav.raids')}
         </button>
         <button
           className={`tab-btn${view === 'types' ? ' active' : ''}`}
           onClick={() => switchTab('types')}
         >
-          Types
+          {t('nav.types')}
         </button>
         <button
           className={`tab-btn${view === 'pvp' ? ' active' : ''}`}
           onClick={() => switchTab('pvp')}
         >
-          PvP
+          {t('nav.pvp')}
         </button>
         <button
           className={`tab-btn${view === 'tips' ? ' active' : ''}`}
           onClick={() => switchTab('tips')}
         >
-          Tips
+          {t('nav.tips')}
         </button>
       </nav>
       </div>

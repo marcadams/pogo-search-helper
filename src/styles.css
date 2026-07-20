@@ -99,6 +99,26 @@ h1 {
   line-height: 1.5;
 }
 
+.hero-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.lang-picker {
+  border: 1px solid var(--border-mid);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+.lang-picker:focus { border-color: var(--pink); }
+
 .hero-mini-ball {
   display: none;
   width: 36px;
