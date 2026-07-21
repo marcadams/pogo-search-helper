@@ -8,7 +8,7 @@
 
 A visual builder for Pokémon GO's in-storage search syntax. Pick filters, combine them with AND / OR / NOT logic, copy the result, paste it into the game. Also includes cleanup recipes and a raid counter reference for current bosses.
 
-**[Open the app →](https://marcadams.github.io/pogo-search-helper/)**
+**[Open the app →](https://pogotools.net/)**
 
 ---
 
