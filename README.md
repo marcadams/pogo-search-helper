@@ -1,7 +1,7 @@
-# 🔍 Pokémon GO Search Helper
+# 🔍 Pokémon GO Trainer Toolkit
 
-[![Deploy](https://github.com/marcadams/pogo-search-helper/actions/workflows/deploy.yml/badge.svg)](https://github.com/marcadams/pogo-search-helper/actions/workflows/deploy.yml)
-[![Tests](https://github.com/marcadams/pogo-search-helper/actions/workflows/test.yml/badge.svg)](https://github.com/marcadams/pogo-search-helper/actions/workflows/test.yml)
+[![Deploy](https://github.com/marcadams/pogo-tools/actions/workflows/deploy.yml/badge.svg)](https://github.com/marcadams/pogo-tools/actions/workflows/deploy.yml)
+[![Tests](https://github.com/marcadams/pogo-tools/actions/workflows/test.yml/badge.svg)](https://github.com/marcadams/pogo-tools/actions/workflows/test.yml)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
 
 **Stop typing `4*&!shadow&shiny` from memory.**
