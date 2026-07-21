@@ -3,6 +3,20 @@
 All notable changes to this project are documented here.
 
 ---
+## 2026-07-21
+
+### Added
+- **SEO deep optimization** - expanded meta description with long-tail keywords, robots directive, revisit-after hint
+- **Hreflang tags** - alternate language links for all 7 supported languages + x-default
+- **Preconnect hints** - `raw.githubusercontent.com` and `googletagmanager.com` for Core Web Vitals
+- **Enhanced structured data** - WebApplication with featureList, datePublished/Modified, screenshot; BreadcrumbList for navigation; HowTo schema for search builder workflow
+- **Expanded FAQ schema** - 6 questions (up from 4) covering type chart multipliers and catch rate stacking
+- **sitemap.xml** - all hash routes with lastmod, changefreq, and priority for Google Search Console
+- **robots.txt** - allow all crawlers with sitemap reference
+- **Richer noscript content** - semantic HTML with nav, articles, code examples, internal anchor links for crawlers
+- **OG image alt text** and alternate locale tags for multilingual social sharing
+
+---
 ## 2026-07-19
 
 ### Changed

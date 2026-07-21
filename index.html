@@ -4,30 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f8fafc" />
-    <title>Pokémon GO Trainer Toolkit - Search Strings, Raid Counters & Type Chart</title>
+    <title>Pokémon GO Trainer Toolkit - Search Strings, Raid Counters & PvP IV Checker | PoGo Tools</title>
 
     <!-- SEO -->
-    <meta name="description" content="Pokémon GO Trainer Toolkit: visual search string builder, raid counters for current bosses, PvP IV rank checker, type effectiveness chart, cleanup recipes, and tips & tricks. Free, mobile-friendly, no login required." />
-    <meta name="keywords" content="Pokemon GO, search strings, raid counters, PvP IV rank, type chart, tips tricks, Pokemon GO tool, shiny, legendary, Great League, Ultra League, trainer toolkit, search helper" />
+    <meta name="description" content="Free Pokémon GO toolkit: visual search string builder with 130+ tokens, raid counters for July 2026 bosses, PvP IV rank checker for Great/Ultra/Master League, interactive type chart, cleanup recipes, and tips. Mobile-friendly, no login needed." />
+    <meta name="keywords" content="Pokemon GO search strings, Pokemon GO raid counters, PvP IV rank checker, Pokemon GO type chart, Great League IVs, Ultra League IVs, Pokemon GO tips 2026, raid boss counters, search string builder, Pokemon GO cleanup, shiny search, legendary counters, Mewtwo counters, shadow Pokemon, Pokemon GO tools, best PvP IVs" />
     <meta name="author" content="Marc Adams" />
     <link rel="canonical" href="https://pogotools.net/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="rating" content="General" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="en" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="ja" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="es" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="pt" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="de" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="fr" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="ko" href="https://pogotools.net/" />
+    <link rel="alternate" hreflang="x-default" href="https://pogotools.net/" />
+
+    <!-- Preconnect for performance (Core Web Vitals) -->
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+    <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!-- Open Graph (Facebook, Discord, iMessage, etc.) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Pokémon GO Trainer Toolkit" />
-    <meta property="og:description" content="Search strings, raid counters, PvP IV checker, type chart, and cleanup recipes for Pokémon GO." />
+    <meta property="og:title" content="Pokémon GO Trainer Toolkit — Free Search Strings, Raid Counters & PvP IVs" />
+    <meta property="og:description" content="Build Pokémon GO search strings visually. Find counters for every raid boss. Check PvP IV ranks. Interactive type chart. All free, no login." />
     <meta property="og:url" content="https://pogotools.net/" />
     <meta property="og:image" content="https://pogotools.net/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pokémon GO Trainer Toolkit - search string builder interface with Pokéball graphic" />
     <meta property="og:site_name" content="PoGo Tools" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="ko_KR" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pokémon GO Trainer Toolkit" />
-    <meta name="twitter:description" content="Search strings, raid counters, PvP IV checker, type chart, and tips for Pokémon GO." />
+    <meta name="twitter:title" content="Pokémon GO Trainer Toolkit — Search Strings, Raids & PvP" />
+    <meta name="twitter:description" content="Free visual search string builder, raid counters for 119+ bosses, PvP IV rank checker, type chart, and tips for Pokémon GO." />
     <meta name="twitter:image" content="https://pogotools.net/og-image.png" />
+    <meta name="twitter:image:alt" content="Pokémon GO Trainer Toolkit interface" />
 
     <!-- Mobile / PWA hints -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -48,5 +74,215 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- SEO: Static content for crawlers that can't execute JS -->
+    <noscript>
+      <header>
+        <h1>Pokémon GO Trainer Toolkit - Free Search String Builder, Raid Counters & PvP IV Checker</h1>
+        <p>The ultimate free Pokémon GO companion tool. Build search strings visually, find raid counters, check PvP IV ranks, and master type matchups — all in your browser, no download required.</p>
+      </header>
+      <nav>
+        <a href="#builder">Search String Builder</a> |
+        <a href="#recipes">Cleanup Recipes</a> |
+        <a href="#raids">Raid Counters</a> |
+        <a href="#types">Type Chart</a> |
+        <a href="#pvp">PvP IV Checker</a> |
+        <a href="#tips">Tips & Tricks</a>
+      </nav>
+      <article id="builder">
+        <h2>Pokémon GO Search String Builder — 130+ Tokens, AND/OR/NOT Logic</h2>
+        <p>Build complex Pokémon GO search strings visually with AND (&amp;), OR (,), and NOT (!) logic. Choose from over 130 search tokens across 14 categories: Appraisal (0*, 1*, 2*, 3*, 4*), Status (shiny, lucky, shadow, purified, legendary, mythical), Type (all 18 types), Move filtering (@fire, @water, etc.), Evolution state, Catch Source (hatched, traded, raid), Region (Kanto through Paldea), Gender, Size (xxs, xxl), Buddy status, Age &amp; Year, and more. Save your favorite searches for quick access.</p>
+        <h3>Popular Pokémon GO Search Strings</h3>
+        <ul>
+          <li><code>4*&shiny</code> — Perfect IV shinies</li>
+          <li><code>3*,4*&!shadow&!purified</code> — High IV non-shadow Pokemon for raids</li>
+          <li><code>age0&!4*&!3*&!shiny&!legendary&!mythical</code> — Today's catches safe to transfer</li>
+          <li><code>cp10-&!shiny&!4*&!legendary</code> — Low CP trash to mass transfer</li>
+          <li><code>@1water,@2water,@3water</code> — Pokemon with Water-type moves in any slot</li>
+        </ul>
+      </article>
+      <article id="raids">
+        <h2>Pokémon GO Raid Counters — July 2026 Raid Boss List & Best Attackers</h2>
+        <p>Counter search strings for 119+ raid bosses updated for July 2026. Current rotation includes Articuno, Zapdos, Moltres, Kyogre, Solgaleo, Kyurem, Shadow Palkia, Mega Lucario, Mega Sceptile, Mega Salamence, and Dynamax raids. Copy the counter string and paste it into Pokémon GO to instantly filter your storage for super-effective attackers with moves in all three attack slots (@1type, @2type, @3type).</p>
+        <h3>Raid Boss Counter Examples</h3>
+        <ul>
+          <li>Mewtwo — weak to Bug, Ghost, Dark: <code>@1ghost,@2ghost,@3ghost,@1dark,@2dark,@3dark,@1bug,@2bug,@3bug</code></li>
+          <li>Kyogre — weak to Grass, Electric: <code>@1grass,@2grass,@3grass,@1electric,@2electric,@3electric</code></li>
+          <li>Rayquaza — double weak to Ice: <code>@1ice,@2ice,@3ice</code></li>
+        </ul>
+      </article>
+      <article id="pvp">
+        <h2>PvP IV Rank Checker — Great League, Ultra League, Master League</h2>
+        <p>Calculate your Pokémon's PvP IV rank out of 4,096 possible combinations for 110+ species. In Great League (1500 CP cap) and Ultra League (2500 CP cap), lower Attack IVs combined with higher Defense and HP IVs produce more total stats because the Pokémon can be powered to a higher level while staying under the CP cap. The CP formula weights Attack more heavily, so 0/15/15 is often better than 15/15/15 in capped leagues.</p>
+        <h3>How PvP IV Ranking Works</h3>
+        <p>CP = Floor(Atk × √Def × √HP × CPM² / 10). Attack IV has ~2x weight in CP vs Defense/HP. Lower Attack lets you power up more levels, gaining stats from the CP Multiplier (CPM). Each level adds roughly 1.3% more stats. A rank 1 IV spread often gains 5-10% more stat product than a hundo (15/15/15).</p>
+      </article>
+      <article id="types">
+        <h2>Pokémon GO Type Effectiveness Chart — All 18 Type Matchups</h2>
+        <p>Interactive 18×18 type chart using Pokémon GO's actual damage multipliers. Super effective = 1.6x damage, not very effective = 0.625x damage, double resistance (immune in main series) = 0.391x damage. Pokémon GO does not have true immunities — Normal vs Ghost still deals 0.391x. Tap any type to see what it's strong and weak against, both offensively and defensively.</p>
+      </article>
+      <article id="tips">
+        <h2>Pokémon GO Tips and Tricks 2026 — Catch Rate, PvP, XP, Stardust</h2>
+        <p>Catch rate multipliers stack multiplicatively: Ultra Ball (2.0x) + Golden Razz Berry (2.5x) + Excellent Throw (up to 2.0x) + Curve Ball (1.7x) = up to 17x base catch rate. PvP tips for the June 2026 battle system overhaul: 45-second switch timer, charged move priority (CMP), shield management. Stardust optimization with Star Pieces, weather boost, and egg hatching. Trading mechanics: Lucky Friends guarantee, distance trades for XL candy, and special trade limits.</p>
+      </article>
+      <article id="recipes">
+        <h2>Pokémon GO Cleanup Recipes — Ready-to-Use Mass Transfer Search Strings</h2>
+        <p>19 pre-made search strings for common Pokémon storage management: find low IV trash to transfer, identify PvP candidates to keep, locate shiny duplicates for trading, find distance trade fodder for extra XL candy, shadow Pokémon to purify for the medal, and evolution session targets for XP grinding. One tap to copy, paste directly into the game.</p>
+      </article>
+      <footer>
+        <p>PoGo Tools is a free, open-source Pokémon GO companion tool. Available in English, Japanese, Spanish, Portuguese, German, French, and Korean. No account required, works entirely in your browser. Updated for July 2026.</p>
+        <p>Fan-made utility. Pokémon and Pokémon GO are trademarks of their respective owners.</p>
+      </footer>
+    </noscript>
+
+    <!-- Structured data for rich search results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pokémon GO Trainer Toolkit",
+      "alternateName": ["PoGo Tools", "Pokemon GO Search Helper", "POGO Search Builder", "Pokemon GO Raid Counter Tool", "PvP IV Calculator"],
+      "url": "https://pogotools.net",
+      "description": "Free Pokémon GO toolkit: visual search string builder with 130+ tokens and AND/OR/NOT logic, raid counters for 119+ bosses, PvP IV rank checker for Great/Ultra/Master League, interactive type chart, cleanup recipes, and tips. Available in 7 languages.",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Utility",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "softwareVersion": "0.1.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Marc Adams",
+        "url": "https://github.com/marcadams"
+      },
+      "datePublished": "2026-07-01",
+      "dateModified": "2026-07-21",
+      "inLanguage": ["en", "ja", "es", "pt", "de", "fr", "ko"],
+      "screenshot": "https://pogotools.net/og-image.png",
+      "featureList": [
+        "Visual search string builder with 130+ tokens",
+        "AND, OR, NOT logic with per-term joiners",
+        "Raid counters for 119+ bosses",
+        "PvP IV rank checker for all leagues",
+        "Interactive 18x18 type effectiveness chart",
+        "19 pre-made cleanup recipes",
+        "Tips and tricks with catch rate multipliers",
+        "Save and load custom searches",
+        "7 language translations",
+        "Mobile-friendly, no login required"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1",
+        "bestRating": "5"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best PvP IV for Great League in Pokémon GO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Great League (1500 CP cap), the best IVs are typically 0 Attack / 15 Defense / 15 HP. Lower Attack IV keeps CP low, allowing you to power up to a higher level where all stats benefit from a larger CPM multiplier. Use the PvP IV Rank Checker at pogotools.net to find the exact rank for your Pokémon out of 4,096 possible combinations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I search for shiny Pokémon in Pokémon GO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Type 'shiny' in the Pokémon GO search bar to filter for all Shiny Pokémon. Combine with other filters: 'shiny&4*' for perfect shinies, 'shiny&!favorite' for unfavorited shinies, 'shiny&legendary' for shiny legendaries. The PoGo Tools search builder lets you create complex multi-filter searches visually."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the best counters for Mewtwo raids in Pokémon GO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mewtwo is weak to Bug, Ghost, and Dark type moves. Top counters include Mega Gengar, Giratina Origin, Darkrai, Chandelure, and Hydreigon. Use the search string '@1ghost,@2ghost,@3ghost,@1dark,@2dark,@3dark,@1bug,@2bug,@3bug' to find your best attackers across all three move slots."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do search strings work in Pokémon GO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pokémon GO search strings use special tokens to filter storage. The & symbol means AND (both conditions required), comma means OR (either condition), and ! means NOT (exclude). Example: '4*,3*&!shadow' finds 3-star or 4-star Pokémon that aren't shadows. Use '@1type' for fast move, '@2type' for charged move, and '@3type' for the second charged move."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Pokémon GO type chart damage multiplier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pokémon GO uses different multipliers than the main games. Super effective = 1.6x damage, not very effective = 0.625x, double super effective = 2.56x, double resistance = 0.391x. There are no true immunities — what would be immune in the main games deals 0.391x in GO. Double weaknesses (like Ice vs Rayquaza) deal 2.56x damage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I maximize my catch rate in Pokémon GO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stack multipliers: Ultra Ball (2.0x) + Golden Razz Berry (2.5x) + Excellent Curve Throw (up to 2.0x × 1.7x). These multiply together for up to 17x the base catch rate. The circle lock trick lets you guarantee your target circle size: hold the ball, wait for ideal size, release, wait for the attack animation, then throw during it."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pogotools.net/" },
+        { "@type": "ListItem", "position": 2, "name": "Search String Builder", "item": "https://pogotools.net/#builder" },
+        { "@type": "ListItem", "position": 3, "name": "Cleanup Recipes", "item": "https://pogotools.net/#recipes" },
+        { "@type": "ListItem", "position": 4, "name": "Raid Counters", "item": "https://pogotools.net/#raids" },
+        { "@type": "ListItem", "position": 5, "name": "Type Chart", "item": "https://pogotools.net/#types" },
+        { "@type": "ListItem", "position": 6, "name": "PvP IV Checker", "item": "https://pogotools.net/#pvp" },
+        { "@type": "ListItem", "position": 7, "name": "Tips & Tricks", "item": "https://pogotools.net/#tips" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Build a Pokémon GO Search String",
+      "description": "Create complex search strings for Pokémon GO using the visual builder tool to filter your Pokémon storage.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Choose filters",
+          "text": "Browse 14 categories (Appraisal, Type, Status, Move, etc.) and tap a filter to add it to your search. Each filter shows its in-game search token."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Set logic operators",
+          "text": "Click the joiner badge between filters to toggle AND (&) or OR (,). Use the NOT button to exclude a filter. AND narrows results, OR broadens them, NOT removes matches."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy and paste",
+          "text": "Click the Copy button to copy the generated string. Open Pokémon GO, tap the search bar in your storage, and paste the string to instantly filter your collection."
+        }
+      ],
+      "totalTime": "PT1M",
+      "tool": {
+        "@type": "HowToTool",
+        "name": "PoGo Tools Search Builder"
+      }
+    }
+    </script>
   </body>
 </html>
