@@ -9,8 +9,20 @@ export default {
 
   // Hero
   'hero.eyebrow': 'Pokémon GO toolkit',
-  'hero.title': 'Trainer\nToolkit',
-  'hero.sub': 'Search strings, raid counters, type chart, and cleanup recipes — all in one place.',
+  'hero.title': 'Trainer Toolkit',
+  'hero.sub': 'Search strings, raid counters, PvP IV checker, type chart, and more.',
+  'hero.sub.builder': 'Build search strings visually with AND, OR, and NOT logic. Copy and paste into Pokémon GO.',
+  'hero.sub.recipes': 'Ready-to-use search strings for common storage cleanup tasks. One tap to copy.',
+  'hero.sub.raids': 'Find counters to any raid boss. Copy the search string to filter your storage for super-effective attackers.',
+  'hero.sub.types': 'Interactive type chart with Pokémon GO damage multipliers. Tap any type to explore matchups.',
+  'hero.sub.pvp': 'Check your Pokémon\'s PvP IV rank out of 4,096 combinations. Lower Attack = more total stats.',
+  'hero.sub.tips': 'Catch rate multipliers, PvP mechanics, stardust optimization, and hidden game tricks.',
+
+  // Quick actions
+  'quick.raids': 'Raid Counters',
+  'quick.pvp': 'Check PvP IVs',
+  'quick.builder': 'Build a Search',
+  'quick.types': 'Type Chart',
 
   // Builder
   'builder.generated': 'Generated search',
