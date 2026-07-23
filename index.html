@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f8fafc" />
-    <title>Pokémon GO Trainer Toolkit - Search Strings, Raid Counters & PvP IV Checker | PoGo Tools</title>
+    <title>Pokemon GO Tools — Free Search String Builder, Raid Counters, PvP IV Checker</title>
 
     <!-- SEO -->
-    <meta name="description" content="Free Pokémon GO toolkit: visual search string builder with 130+ tokens, raid counters for July 2026 bosses, PvP IV rank checker for Great/Ultra/Master League, interactive type chart, cleanup recipes, and tips. Mobile-friendly, no login needed." />
+    <meta name="description" content="Free Pokemon GO tools: visual search string builder with 130+ tokens, raid counters for July 2026 bosses, PvP IV rank checker for Great/Ultra/Master League, interactive type chart, cleanup recipes, and tips. Mobile-friendly, no login needed." />
     <meta name="keywords" content="Pokemon GO search strings, Pokemon GO raid counters, PvP IV rank checker, Pokemon GO type chart, Great League IVs, Ultra League IVs, Pokemon GO tips 2026, raid boss counters, search string builder, Pokemon GO cleanup, shiny search, legendary counters, Mewtwo counters, shadow Pokemon, Pokemon GO tools, best PvP IVs" />
     <meta name="author" content="Marc Adams" />
     <link rel="canonical" href="https://pogotools.net/" />
@@ -32,7 +32,7 @@
 
     <!-- Open Graph (Facebook, Discord, iMessage, etc.) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Pokémon GO Trainer Toolkit — Free Search Strings, Raid Counters & PvP IVs" />
+    <meta property="og:title" content="Pokemon GO Tools — Free Search Strings, Raid Counters & PvP IV Checker" />
     <meta property="og:description" content="Build Pokémon GO search strings visually. Find counters for every raid boss. Check PvP IV ranks. Interactive type chart. All free, no login." />
     <meta property="og:url" content="https://pogotools.net/" />
     <meta property="og:image" content="https://pogotools.net/og-image.png" />
@@ -50,7 +50,7 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pokémon GO Trainer Toolkit — Search Strings, Raids & PvP" />
+    <meta name="twitter:title" content="Pokemon GO Tools — Search Strings, Raids & PvP IV Checker" />
     <meta name="twitter:description" content="Free visual search string builder, raid counters for 119+ bosses, PvP IV rank checker, type chart, and tips for Pokémon GO." />
     <meta name="twitter:image" content="https://pogotools.net/og-image.png" />
     <meta name="twitter:image:alt" content="Pokémon GO Trainer Toolkit interface" />
@@ -72,7 +72,22 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pre-render: visible to crawlers and users before React hydrates -->
+      <div id="seo-prerender" style="max-width:1120px;margin:0 auto;padding:24px 16px;font-family:Inter,system-ui,sans-serif;color:#1e293b">
+        <h1 style="font-size:1.6rem;margin:0 0 8px">Pokemon GO Tools — Free Trainer Toolkit</h1>
+        <p style="color:#475569;font-size:.92rem;margin:0 0 16px;max-width:70ch">Search string builder, raid counters, PvP IV rank checker, type effectiveness chart, cleanup recipes, and tips. Updated July 2026.</p>
+        <nav style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+          <a href="#builder" style="padding:8px 14px;border-radius:99px;background:#dc2626;color:#fff;text-decoration:none;font-size:.84rem;font-weight:700">Search Builder</a>
+          <a href="#raids" style="padding:8px 14px;border-radius:99px;background:#f1f5f9;color:#475569;text-decoration:none;font-size:.84rem;font-weight:700;border:1px solid #e2e8f0">Raid Counters</a>
+          <a href="#pvp" style="padding:8px 14px;border-radius:99px;background:#f1f5f9;color:#475569;text-decoration:none;font-size:.84rem;font-weight:700;border:1px solid #e2e8f0">PvP IV Checker</a>
+          <a href="#types" style="padding:8px 14px;border-radius:99px;background:#f1f5f9;color:#475569;text-decoration:none;font-size:.84rem;font-weight:700;border:1px solid #e2e8f0">Type Chart</a>
+          <a href="#tips" style="padding:8px 14px;border-radius:99px;background:#f1f5f9;color:#475569;text-decoration:none;font-size:.84rem;font-weight:700;border:1px solid #e2e8f0">Tips &amp; Tricks</a>
+          <a href="#recipes" style="padding:8px 14px;border-radius:99px;background:#f1f5f9;color:#475569;text-decoration:none;font-size:.84rem;font-weight:700;border:1px solid #e2e8f0">Cleanup Recipes</a>
+        </nav>
+        <p style="color:#64748b;font-size:.82rem">Build Pokemon GO search strings with AND, OR, NOT logic. Find raid boss counters for Mewtwo, Rayquaza, Kyogre, and 119+ bosses. Check PvP IV ranks for Great League, Ultra League, and Master League. Free, no login required.</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- SEO: Static content for crawlers that can't execute JS -->

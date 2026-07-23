@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemon GO Search String Builder — Visual Filter Builder with AND/OR/NOT | PoGo Tools</title>
+  <meta name="description" content="Build Pokemon GO search strings visually. 130+ search tokens across 14 categories. Combine with AND, OR, NOT logic. Copy and paste directly into the game. Free search string generator for Pokemon GO storage management." />
+  <link rel="canonical" href="https://pogotools.net/search-strings/" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Pokemon GO Search String Builder — 130+ Tokens, AND/OR/NOT Logic" />
+  <meta property="og:description" content="Build complex Pokemon GO search strings visually. Pick filters, set logic, copy to clipboard. Free and mobile-friendly." />
+  <meta property="og:url" content="https://pogotools.net/search-strings/" />
+  <meta property="og:image" content="https://pogotools.net/og-image.png" />
+  <meta property="og:type" content="website" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pokemon GO Search String Builder",
+    "description": "Visual search string builder for Pokemon GO with 130+ tokens and AND/OR/NOT logic.",
+    "url": "https://pogotools.net/search-strings/",
+    "isPartOf": { "@type": "WebApplication", "name": "PoGo Tools", "url": "https://pogotools.net" }
+  }
+  </script>
+</head>
+<body style="max-width:900px;margin:0 auto;padding:32px 16px;font-family:Inter,system-ui,sans-serif;color:#1e293b">
+  <h1>Pokemon GO Search String Builder</h1>
+  <p>Build complex Pokemon GO search strings visually with AND (&amp;), OR (,), and NOT (!) logic. Choose from over 130 search tokens across 14 categories, preview the exact string, and copy it to paste directly into Pokemon GO.</p>
+
+  <h2>Search String Categories</h2>
+  <ul>
+    <li><strong>Appraisal:</strong> 0*, 1*, 2*, 3*, 4* (star ratings), individual IV filters (4attack, 4defense, 4hp)</li>
+    <li><strong>Status:</strong> shiny, lucky, shadow, purified, legendary, mythical, costume, traded, favorite</li>
+    <li><strong>Type:</strong> All 18 Pokemon types (fire, water, grass, electric, etc.)</li>
+    <li><strong>Move:</strong> @1type (fast move), @2type (charged move), @3type (second charged move), @special</li>
+    <li><strong>Evolution:</strong> evolve, evolvenew, item, tradeevolve</li>
+    <li><strong>Catch Source:</strong> hatched, raid, research, traded</li>
+    <li><strong>Region:</strong> Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos, Alola, Galar, Hisui, Paldea</li>
+    <li><strong>Size:</strong> xxs, xs, xl, xxl</li>
+    <li><strong>Other:</strong> buddy0-5, distance100-, age0-7, year2016-2026, cp ranges</li>
+  </ul>
+
+  <h2>How Search Strings Work in Pokemon GO</h2>
+  <p>Pokemon GO's storage search uses special syntax:</p>
+  <ul>
+    <li><code>&amp;</code> means AND — both conditions must match (narrows results)</li>
+    <li><code>,</code> means OR — either condition matches (broadens results)</li>
+    <li><code>!</code> means NOT — exclude matches from results</li>
+  </ul>
+
+  <h2>Popular Search String Examples</h2>
+  <ul>
+    <li><code>4*&amp;shiny</code> — Perfect IV shinies (the flex collection)</li>
+    <li><code>3*,4*&amp;!shadow&amp;!purified</code> — High IV Pokemon for raids</li>
+    <li><code>age0&amp;!4*&amp;!3*&amp;!shiny&amp;!legendary</code> — Safe to transfer from today</li>
+    <li><code>distance100-&amp;!lucky&amp;!favorite</code> — Distance trade fodder</li>
+    <li><code>evolve&amp;!legendary&amp;!mythical&amp;!shadow</code> — Ready to evolve for XP</li>
+    <li><code>@1ice,@2ice,@3ice</code> — Ice-type attackers for Rayquaza raids</li>
+  </ul>
+
+  <p><strong><a href="https://pogotools.net/#builder">Open the Search String Builder →</a></strong></p>
+  <p style="margin-top:32px;color:#64748b;font-size:.82rem"><a href="https://pogotools.net/">PoGo Tools</a> — Free Pokemon GO toolkit with search builder, raid counters, PvP IV checker, type chart, and tips.</p>
+
+  <script>
+    if (window.history && window.history.replaceState) {
+      window.location.replace('https://pogotools.net/#builder');
+    }
+  </script>
+</body>
+</html>

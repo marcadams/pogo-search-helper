@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokemon GO PvP IV Rank Checker — Great League, Ultra League, Master League | PoGo Tools</title>
+  <meta name="description" content="Free Pokemon GO PvP IV rank calculator. Check if your Pokemon has rank 1 IVs for Great League (1500 CP), Ultra League (2500 CP), or Master League. Calculates stat product for 4,096 IV combinations. 110+ Pokemon supported." />
+  <link rel="canonical" href="https://pogotools.net/pvp/" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Pokemon GO PvP IV Rank Checker — Best IVs for Great & Ultra League" />
+  <meta property="og:description" content="Calculate your Pokemon's PvP IV rank out of 4,096 combinations. Lower Attack IVs = more total stats in capped leagues." />
+  <meta property="og:url" content="https://pogotools.net/pvp/" />
+  <meta property="og:image" content="https://pogotools.net/og-image.png" />
+  <meta property="og:type" content="website" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pokemon GO PvP IV Rank Checker",
+    "description": "Calculate PvP IV ranks for Great League, Ultra League, and Master League. 110+ Pokemon, 4096 combinations.",
+    "url": "https://pogotools.net/pvp/",
+    "isPartOf": { "@type": "WebApplication", "name": "PoGo Tools", "url": "https://pogotools.net" }
+  }
+  </script>
+</head>
+<body style="max-width:900px;margin:0 auto;padding:32px 16px;font-family:Inter,system-ui,sans-serif;color:#1e293b">
+  <h1>Pokemon GO PvP IV Rank Checker</h1>
+  <p>Calculate your Pokemon's PvP IV rank out of 4,096 possible combinations for Great League (1500 CP cap), Ultra League (2500 CP cap), and Master League (no cap).</p>
+
+  <h2>Why Are Low Attack IVs Better for PvP?</h2>
+  <p>The CP formula is: <code>CP = Floor(Atk × √Def × √HP × CPM² / 10)</code>. Attack IV has roughly double the weight of Defense or HP in the CP calculation. This means a Pokemon with lower Attack IV stays under the CP cap at a higher level, where the CP Multiplier (CPM) boosts ALL stats equally. The result is more total stat product (Attack × Defense × HP) despite the lower Attack IV.</p>
+
+  <h3>Example: Azumarill in Great League</h3>
+  <ul>
+    <li><strong>Rank 1:</strong> 0/14/15 at Level 45.5 — CP 1500, highest stat product</li>
+    <li><strong>Hundo (15/15/15):</strong> Level 38 — CP 1497, approximately 7% less stat product</li>
+  </ul>
+
+  <h2>When Does This NOT Apply?</h2>
+  <p>In Master League there's no CP cap, so 15/15/15 is always best. For Pokemon that don't reach the CP cap even at Level 50 (like Chansey in Great League), hundos are optimal.</p>
+
+  <h2>Supported Pokemon</h2>
+  <p>110+ Pokemon including: Azumarill, Medicham, Bastiodon, Galarian Stunfisk, Swampert, Altaria, Umbreon, Registeel, Trevenant, Walrein, Giratina, Cresselia, Dialga, Zacian, and many more.</p>
+
+  <p><strong><a href="https://pogotools.net/#pvp">Open the PvP IV Rank Checker →</a></strong></p>
+  <p style="margin-top:32px;color:#64748b;font-size:.82rem"><a href="https://pogotools.net/">PoGo Tools</a> — Free Pokemon GO toolkit with search builder, raid counters, PvP IV checker, type chart, and tips.</p>
+
+  <script>
+    if (window.history && window.history.replaceState) {
+      window.location.replace('https://pogotools.net/#pvp');
+    }
+  </script>
+</body>
+</html>
