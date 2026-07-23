@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Pokéball body -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#1e293b" stroke-width="3"/>
+  <!-- Top half - red -->
+  <path d="M2 32 A30 30 0 0 1 62 32 Z" fill="#ef4444"/>
+  <!-- Bottom half - white -->
+  <path d="M2 32 A30 30 0 0 0 62 32 Z" fill="#f8fafc"/>
+  <!-- Center band -->
+  <line x1="2" y1="32" x2="62" y2="32" stroke="#1e293b" stroke-width="4"/>
+  <!-- Center button -->
+  <circle cx="32" cy="32" r="8" fill="#1e293b"/>
+  <circle cx="32" cy="32" r="5" fill="#f8fafc"/>
+  <!-- Magnifying glass overlay -->
+  <circle cx="28" cy="28" r="10" fill="none" stroke="#1e293b" stroke-width="3" stroke-opacity="0.9"/>
+  <line x1="35" y1="35" x2="44" y2="44" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.9"/>
+  <!-- Glass shine -->
+  <circle cx="25" cy="25" r="3" fill="white" opacity="0.5"/>
+</svg>
